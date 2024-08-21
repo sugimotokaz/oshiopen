@@ -12,11 +12,13 @@ class SignUpForm
   validates :password, presence: true, length: { minimum: 8 }
   validates :password_confirmation, presence: true, confirmation: true
 
+  attr_reader :user
+
   def save
     return false if invalid?
 
     ActiveRecord::Base.transaction do
-      user = User.create!(email: email, password: password, password_confirmation: password_confirmation)
+      @user = User.create!(email: email, password: password, password_confirmation: password_confirmation)
       Profile.create!(name: name, user: user)
     end
   rescue StandardError

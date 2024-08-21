@@ -1,0 +1,21 @@
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mt-14">
+    <div class="w-full max-w-lg">
+      <h1 class="text-2xl font-bold mb-10">ログイン</h1>
+      <%= form_with url: login_path do |f| %>
+        <div class="mb-10">
+          <%= f.label :email, class: "block mb-3" %>
+          <%= f.email_field :email, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :password, class: "block mb-3" %>
+          <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+          <%= f.submit "ログイン", class: 'btn btn-neutral' %>
+        <div class="mt-10 mb-10">
+          <%= link_to "新規作成ページへ", sign_up_path, class: "link link-hover" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

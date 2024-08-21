@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @sign_up_form = SignUpForm.new(sign_up_form_params)
     if @sign_up_form.save
+      auto_login(@sign_up_form.user)
       flash[:success] = "ユーザー登録が完了しました"
       redirect_to root_path # 後に掲示板一覧ページに移動するように変更
     else

@@ -1,0 +1,29 @@
+<div class="navbar bg-base-300">
+  <div class="flex-1">
+    <%= link_to "アプリ名", root_path, class: 'btn btn-ghost text-xl' %>
+  </div>
+  <div class="space-x-4">
+    <%= link_to "記事一覧", "#", class: 'btn btn-neutral' %>
+    <%= link_to "記事作成", "#", class: 'btn btn-neutral' %>
+    <details class="dropdown dropdown-end">
+      <summary class="btn"><i class="fa-solid fa-bars"></i></summary>
+      <ul class="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <li>
+          <%= link_to "マイページ", "#" %>
+        </li>
+        <li>
+          <%= link_to "自分の投稿一覧", "#" %>
+        </li>
+        <li>
+          <%= link_to "お気に入り投稿一覧", "#" %>
+        </li>
+        <li>
+          <%= link_to "お気に入りユーザー一覧", "#" %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %>
+        </li>
+      </ul>
+    </details>
+  </div>
+</div>
