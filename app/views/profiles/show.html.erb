@@ -1,0 +1,31 @@
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mt-14">
+    <div class="w-full max-w-5xl">
+      <div class="bg-base-200 min-h-screen">
+        <div class="hero-content flex-col lg:flex-row">
+          <%= image_tag @profile.profile_image.url, class: "w-24 rounded-full" %>
+          <p class="text-4xl font-bold"><%= @profile.name %></p>
+        </div>
+        <div class="flex justify-center mt-4">
+          <div class="w-full max-w-3xl">
+            <div class="flex">
+              <p>性別：</p>
+              <p><%= @profile.gender %></p>
+            </div>
+            <div class="flex">
+              <p>誕生年度：</p>
+              <p><%= @profile.birth_year || '選択なし' %></p>
+            </div>
+            <div>
+              <p>自己紹介：</p>
+              <p><%= @profile.self_introduction %></p>
+            </div>
+            <%= link_to edit_profile_path do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
