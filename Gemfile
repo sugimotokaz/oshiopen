@@ -71,4 +71,8 @@ end
 
 gem 'sorcery'
 
-gem 'carrierwave'
+gem 'carrierwave' # 画像のアップロード
+
+gem 'fog-aws' # 外部ストレージに画像を保存するのに手助けしてくれる
+
+gem 'dotenv-rails' # 環境変数の設定
