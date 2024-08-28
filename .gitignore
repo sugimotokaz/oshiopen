@@ -41,3 +41,5 @@
 /vendor/bundle
 # ここまで追記
 /node_modules
+
+/.env
