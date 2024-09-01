@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
-  resources :profiles, only: %i[show edit update]
+  resources :profiles, only: %i[show edit update] do
+    resources :oshi_details, only: %i[new create edit update destroy], shallow: true
+  end
 end

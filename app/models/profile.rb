@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
 
   belongs_to :user
+  has_many :oshi_details, dependent: :destroy
   mount_uploader :profile_image, ProfileImageUploader
 
   validates :name, presence: true, length: { maximum: 25 }
@@ -8,5 +9,9 @@ class Profile < ApplicationRecord
   validates :self_introduction, length: { maximum: 1000 }
 
   enum gender: { not_selected: 0, male: 1, female: 2 }
+
+  def fetch_oshi_details
+    oshi_details.includes(:oshi_name) # N+1問題を避けるための例
+  end
 
 end
