@@ -30,6 +30,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @oshi_details = @profile.fetch_oshi_details # 推しの詳細情報を取得
   end
 
   private
