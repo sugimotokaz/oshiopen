@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_one :profile, dependent: :destroy
+
+  def own?(object)
+    object.profile.user_id == id
+  end
 end
