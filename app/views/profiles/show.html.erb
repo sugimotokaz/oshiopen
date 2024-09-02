@@ -20,8 +20,10 @@
               <p>自己紹介：</p>
               <p><%= @profile.self_introduction %></p>
             </div>
-            <%= link_to edit_profile_path do %>
-              <i class="fa-solid fa-pen"></i>
+            <% if current_user == @profile.user %>
+              <%= link_to edit_profile_path do %>
+                <i class="fa-solid fa-pen"></i>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -33,8 +35,10 @@
   <div class="flex justify-center">
     <div class="w-full max-w-5xl">
       <div class="bg-base-200 min-h-3.5 p-2">
-        <%= link_to new_profile_oshi_detail_path(@profile) do %>
-          <i class="fa-solid fa-plus">推し追加</i>
+        <% if current_user == @profile.user %>
+          <%= link_to new_profile_oshi_detail_path(@profile) do %>
+            <i class="fa-solid fa-plus">推し追加</i>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -24,11 +24,13 @@
                   <p><strong>推し活履歴</strong></p>
                   <p><%= oshi_detail.activity_history %></div>
                 </div>
-                <%= link_to edit_oshi_detail_path(oshi_detail) do %>
-                  <i class="fa-solid fa-pen"></i>
-                <% end %>
-                <%= link_to oshi_detail_path(oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-                  <i class="fa-solid fa-trash"></i>
+                <% if current_user.own?(oshi_detail) %>
+                  <%= link_to edit_oshi_detail_path(oshi_detail) do %>
+                    <i class="fa-solid fa-pen"></i>
+                  <% end %>
+                  <%= link_to oshi_detail_path(oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
                 <% end %>
               </div>
             </details>
