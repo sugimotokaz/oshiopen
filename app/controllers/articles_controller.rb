@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_action :require_login, only: %i[index]
 
   def index
-    @articles = Article.includes(:oshi_name, user: :profile).all
+    @articles = Article.includes(:oshi_name, user: :profile).order(created_at: :desc)
   end
 
   def new
@@ -30,6 +30,29 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
+  end
+
+  def edit
+    @article = current_user.articles.find(params[:id])
+  end
+
+  def update
+    oshi_name_name = params[:article][:oshi_name_name]
+
+    if oshi_name_name.present?
+      oshi_name = OshiName.find_or_create_by(name: oshi_name_name.strip)
+    end
+
+    @article = current_user.articles.find(params[:id])
+    @article.oshi_name = oshi_name if oshi_name
+
+    if @article.update(article_params)
+      flash[:success] = "記事を更新しました"
+      redirect_to articles_path
+    else
+      flash.now[:danger] = "記事を更新できませんでした"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
