@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @sign_up_form.save
       auto_login(@sign_up_form.user)
       flash[:success] = "ユーザー登録が完了しました"
-      redirect_to root_path # 後に掲示板一覧ページに移動するように変更
+      redirect_to root_path # 後にプロフィール詳細ページに移動するように変更
     else
       flash.now[:danger] = "ユーザー登録に失敗しました"
       render :new, status: :unprocessable_entity
