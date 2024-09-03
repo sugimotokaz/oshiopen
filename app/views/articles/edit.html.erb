@@ -1,0 +1,36 @@
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mt-14">
+    <div class="w-full max-w-5xl">
+      <h1 class="text-2xl font-bold mb-10">記事編集</h1>
+      <%= form_with model: @article, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-10">
+          <%= f.label :oshi_name_name, "推し名", class: "block mb-1" %>
+          <%= f.text_field :oshi_name_name, value: @article.oshi_name&.name, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :title, "タイトル", class: "block mb-1" %>
+          <%= f.text_field :title, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :notice, "注意書き", class: "block mb-1" %>
+          <%= f.text_field :notice, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :category, "カテゴリ", class: "block mb-1" %>
+          <%= f.select :category, Article.categories.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :visible_gender, "公開先[性別]", class: "block mb-1" %>
+          <%= f.select :visible_gender, Article.visible_genders.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
+          <%= f.label :visible_oshi, "公開先[タイトルと同じ推し]", class: "block mb-1" %>
+          <%= f.check_box :visible_oshi, { checked: @article.visible_oshi }, true, false %>
+        </div>
+          <%= f.submit "変更", class: 'btn btn-neutral mb-10' %>
+          <%= link_to "戻る", articles_path, class: 'btn btn-neutral mb-10 ml-5' %>
+      <% end %>
+    </div>
+  </div>
+</div>

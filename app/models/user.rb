@@ -12,4 +12,8 @@ class User < ApplicationRecord
   def own?(object)
     object.profile.user_id == id
   end
+
+  def own1?(object)
+    object.user_id == id
+  end
 end
