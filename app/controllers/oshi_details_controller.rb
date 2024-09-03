@@ -54,7 +54,7 @@ class OshiDetailsController < ApplicationController
   def destroy
     @oshi_detail.destroy!
     flash[:success] = "推し情報を削除しました"
-    redirect_to profile_path(current_user.profile)
+    redirect_to profile_path(current_user.profile), status: :see_other
   end
 
   private

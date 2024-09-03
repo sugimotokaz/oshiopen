@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_30_132042) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_164120) do
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "notice"
+    t.integer "category", default: 0, null: false
+    t.integer "visible_gender", default: 0, null: false
+    t.boolean "visible_oshi", default: false, null: false
+    t.bigint "user_id", null: false
+    t.bigint "oshi_name_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["oshi_name_id"], name: "index_articles_on_oshi_name_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "oshi_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "reason_for_favorite"
     t.text "trigger_for_favorite"
@@ -52,6 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_132042) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "articles", "oshi_names"
+  add_foreign_key "articles", "users"
   add_foreign_key "oshi_details", "oshi_names"
   add_foreign_key "oshi_details", "profiles"
   add_foreign_key "profiles", "users"
