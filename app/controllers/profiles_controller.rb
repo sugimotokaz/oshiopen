@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  skip_before_action :require_login, only: %i[show]
   before_action :set_user, only: %i[new create edit update]
 
   def new
