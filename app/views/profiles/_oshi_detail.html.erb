@@ -24,7 +24,7 @@
                   <p><strong>推し活履歴</strong></p>
                   <p><%= oshi_detail.activity_history %></div>
                 </div>
-                <% if current_user.own?(oshi_detail) %>
+                <% if current_user&.own?(oshi_detail) %>
                   <%= link_to edit_oshi_detail_path(oshi_detail) do %>
                     <i class="fa-solid fa-pen"></i>
                   <% end %>

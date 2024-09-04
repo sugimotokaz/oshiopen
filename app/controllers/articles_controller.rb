@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_action :require_login, only: %i[index]
+  skip_before_action :require_login, only: %i[index show]
 
   def index
     @articles = Article.includes(:oshi_name, user: :profile).order(created_at: :desc)
@@ -53,6 +53,13 @@ class ArticlesController < ApplicationController
       flash.now[:danger] = "記事を更新できませんでした"
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @article = current_user.articles.find(params[:id])
+    @article.destroy!
+    flash[:success] = "投稿を削除しました"
+    redirect_to articles_path, status: :see_other
   end
 
   private
