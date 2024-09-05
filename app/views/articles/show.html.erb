@@ -27,6 +27,14 @@
           </div>
         </div>
       </div>
+      <div class="bg-base-200 min-h-3.5 mt-2 p-4">
+        <%= render 'comments/form', comment: @comment, article: @article %>
+      </div>
+      <div class="bg-base-200 min-h-3.5 mt-2 p-4">
+        <div id="table-comment">
+          <%= render @comments %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
