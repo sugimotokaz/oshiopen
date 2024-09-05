@@ -2,6 +2,7 @@ class Article < ApplicationRecord
 
   belongs_to :user
   belongs_to :oshi_name
+  has_many :comments, dependent: :destroy
 
   enum category: { others: 0, impression: 1, introduction: 2 }
   enum visible_gender: { not_selected: 0, male: 1, female: 2 }

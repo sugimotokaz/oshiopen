@@ -1,0 +1,27 @@
+<div id="comment-id-<%= comment.id %>">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-center">
+      <div class="w-full max-w-5xl">
+        <div class="bg-base-200 min-h-3.5 p-2">
+          <div class="m-1">
+            <div class="card bg-base-100 max-w-4xl shadow-xl">
+              <div class="card-body">
+                <h3><%= comment.user.profile.name %></h3>
+                <h3>作成日：<%= l comment.created_at, format: :short %></h3>
+                <h3><%= comment.body %></h3>
+                <% if current_user&.own1?(comment) %>
+                  <%= link_to "#" do %>
+                    <i class="fa-solid fa-pen"></i>
+                  <% end %>
+                  <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
