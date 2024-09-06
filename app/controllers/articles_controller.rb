@@ -3,6 +3,33 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.includes(:oshi_name, user: :profile).order(created_at: :desc)
+  
+    if logged_in?
+      # 作成した記事には常にアクセスできるようにする
+      user_created_articles = @articles.where(user_id: current_user.id)
+  
+      # 性別によるフィルタリング
+      if current_user.profile.gender.present?
+        @articles = @articles.where(visible_gender: [0, Profile.genders[current_user.profile.gender]])
+      else
+        @articles = @articles.where(visible_gender: 0)
+      end
+  
+      # 同じ推し名を持つユーザーに対してのみ表示するフィルタリング
+      if current_user.profile.oshi_details.any?
+        oshi_name_ids = current_user.profile.oshi_details.pluck(:oshi_name_id)
+        @articles = @articles.where('visible_oshi = ? OR (visible_oshi = ? AND oshi_name_id IN (?))', false, true, oshi_name_ids)
+      else
+        @articles = @articles.where(visible_oshi: false)
+      end
+  
+      # 作成者自身には常に記事を表示
+      @articles = @articles.or(user_created_articles)
+  
+    else
+      # ログインしていない場合は「選択なし」の記事のみ表示
+      @articles = @articles.where(visible_gender: 0, visible_oshi: false)
+    end
   end
 
   def new
