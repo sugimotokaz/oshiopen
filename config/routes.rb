@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :profiles, only: %i[show edit update] do
+    get :articles, on: :member  # プロフィールに対するユーザーごとの記事一覧
     resources :oshi_details, only: %i[new create edit update destroy], shallow: true
   end
   resources :articles, only: %i[index new create show edit update destroy] do
