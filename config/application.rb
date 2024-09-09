@@ -31,5 +31,7 @@ module Myapp
       g.test_framework nil    # test ファイルを作成しない
       g.skip_routes true         # ルーティングの記述を作成しない
     end
+
+    config.active_storage.variant_processor = :mini_magick
   end
 end

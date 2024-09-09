@@ -21,6 +21,10 @@
           <%= f.select :category, Article.categories.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
         </div>
         <div class="mb-10">
+          <%= f.label :content, "本文", class: "block mb-1" %>
+          <%= f.rich_text_area :content %>
+        </div>
+        <div class="mb-10">
           <%= f.label :visible_gender, "公開先[性別]", class: "block mb-1" %>
           <%= f.select :visible_gender, Article.visible_genders.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
         </div>
