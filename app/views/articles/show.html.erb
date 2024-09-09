@@ -13,6 +13,7 @@
               <h1 class="mb-2">作成者：<%= link_to @article.user.profile.name, profile_path(@article.user.profile) %></h1>
               <h1 class="mb-2">カテゴリ：<%= @article.category %></h1>
               <h1 class="mb-2">作成日：<%= l @article.created_at, format: :short %></h1>
+              <h1 class="bg-white p-2 mb-2"><%= @article.content %></h1>
             </div>
             <% if current_user&.own1?(@article) %>
               <div>

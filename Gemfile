@@ -45,7 +45,8 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+gem "mini_magick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,6 +74,8 @@ gem 'sorcery'
 
 gem 'carrierwave' # 画像のアップロード
 
-gem 'fog-aws' # 外部ストレージに画像を保存するのに手助けしてくれる
+gem 'fog-aws' # 外部ストレージに画像を保存するのに手助けしてくれる（carrierwave）
 
 gem 'dotenv-rails' # 環境変数の設定
+
+gem 'aws-sdk-s3' # 外部ストレージに画像を保存するのに手助けしてくれる（active strage)

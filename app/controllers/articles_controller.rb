@@ -94,6 +94,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :notice, :category, :visible_gender, :visible_oshi)
+    params.require(:article).permit(:title, :notice, :category, :visible_gender, :visible_oshi, :content)
   end
 end
