@@ -35,9 +35,9 @@ class ProfilesController < ApplicationController
   end
 
   def articles
-    @profile = Profile.find(params[:id])
-    @articles = @profile.user.articles.includes(:oshi_name).order(created_at: :desc)
-
+    @profile = Profile.includes(user: :articles).find(params[:id])
+    @articles = @profile.user.articles.includes(:oshi_name, :user).order(created_at: :desc)
+  
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
       user_created_articles = @articles.where(user_id: current_user.id)
