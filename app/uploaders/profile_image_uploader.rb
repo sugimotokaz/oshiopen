@@ -1,7 +1,7 @@
 class ProfileImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
@@ -39,7 +39,20 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  #   process resize_to_fit: [50, 50]
+  # 画像を800x800ピクセルにリサイズ
+  process resize_to_limit: [400, 400]
+
+  # JPEG形式で保存し、品質を80%に設定
+  process :compress_image
+
+  def compress_image
+    manipulate! do |img|
+      img.format("jpeg") do |c|
+        c.quality "80"  # 品質を80%に設定
+      end
+      img
+    end
+  end
   # end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
