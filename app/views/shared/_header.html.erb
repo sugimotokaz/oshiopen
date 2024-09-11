@@ -12,7 +12,7 @@
           <%= link_to "マイページ", profile_path(current_user.profile) %>
         </li>
         <li>
-          <%= link_to "自分の投稿一覧", "#" %>
+          <%= link_to "自分の投稿一覧", articles_profile_path(current_user.profile) %>
         </li>
         <li>
           <%= link_to "お気に入り投稿一覧", "#" %>
