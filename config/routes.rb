@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :oshi_details, only: %i[new create edit update destroy], shallow: true
   end
   resources :articles, only: %i[index new create show edit update destroy] do
-    resources :comments, only: %i[create edit destroy], shallow: true
+    resources :comments, only: %i[create edit update destroy], shallow: true
   end
 end

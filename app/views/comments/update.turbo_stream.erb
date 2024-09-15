@@ -1,0 +1,9 @@
+<% if @comment.errors.present? %>
+  <%= turbo_stream.replace "edit-form" do %>
+    <%= render 'comments/edit_form', comment: @comment, article: @comment.article %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "edit-form" do %>
+    <%= render 'comments/comment', comment: @comment, article: @comment.article %>
+  <% end %>
+<% end %>
