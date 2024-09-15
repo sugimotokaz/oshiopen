@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
     @comment = Comment.new
-    @comments = @article.comments.includes(user: :profile).order(created_at: :asc)
+    @comments = @article.comments.includes(user: :profile).order(created_at: :desc)
   end
 
   def edit

@@ -64,6 +64,6 @@ class OshiDetailsController < ApplicationController
   end
 
   def oshi_detail_params
-    params.require(:oshi_detail).permit(:oshi_image, :reason_for_favorite, :trigger_for_favorite, :activity_history)
+    params.require(:oshi_detail).permit(:oshi_image, :oshi_image_cache, :reason_for_favorite, :trigger_for_favorite, :activity_history)
   end
 end
