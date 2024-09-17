@@ -95,4 +95,4 @@
 Figma:https://www.figma.com/design/RZp5Xg12TJToidpDQI7b18/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?t=hX2kP89U4UXnzHMe-0
 
 ## ER図
-https://i.gyazo.com/f1d8bc868f712687c80c118f8febb4f4.png
+https://i.gyazo.com/db156fa8f1a29b5c80375ecbcc0014aa.png
