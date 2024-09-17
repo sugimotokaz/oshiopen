@@ -69,13 +69,15 @@ class ArticlesController < ApplicationController
           user_gender = Profile.genders.key(Profile.genders[current_user.profile.gender])
           
           unless ["not_selected", user_gender].include?(@article.visible_gender)
-            redirect_to articles_path, alert: 'この記事は表示できません。'
+            flash[:danger] = 'この記事は表示できません'
+            redirect_to articles_path
             return
           end
         else
           # 「選択なし」の場合のみ表示
           unless @article.visible_gender == "not_selected"
-            redirect_to articles_path, alert: 'この記事は表示できません。'
+            flash[:danger] = 'この記事は表示できません'
+            redirect_to articles_path
             return
           end
         end
@@ -84,7 +86,8 @@ class ArticlesController < ApplicationController
         if @article.visible_oshi
           oshi_name_ids = current_user.profile.oshi_details.pluck(:oshi_name_id)
           unless oshi_name_ids.include?(@article.oshi_name_id)
-            redirect_to articles_path, alert: 'この記事は表示できません。'
+            flash[:danger] = 'この記事は表示できません'
+            redirect_to articles_path
             return
           end
         end
@@ -92,7 +95,8 @@ class ArticlesController < ApplicationController
     else
       # ログインしていない場合、「選択なし」の記事のみ表示
       unless @article.visible_gender == "not_selected" && !@article.visible_oshi
-        redirect_to articles_path, alert: 'この記事は表示できません。'
+        flash[:danger] = 'この記事は表示できません'
+        redirect_to articles_path
         return
       end
     end
