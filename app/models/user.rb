@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_articles, through: :favorites, source: :article
 
   def own?(object)
     object.profile.user_id == id
@@ -16,5 +18,17 @@ class User < ApplicationRecord
 
   def own1?(object)
     object.user_id == id
+  end
+
+  def favorite(article)
+    favorite_articles << article
+  end
+
+  def unfavorite(article)
+    favorite_articles.destroy(article)
+  end
+
+  def favorite?(article)
+    favorite_articles.include?(article)
   end
 end

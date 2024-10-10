@@ -18,7 +18,7 @@
                 <h3>カテゴリ：<%= article.category %></h3>
                 <h3>作成日：<%= l article.created_at, format: :short %></h3>
                 <% if current_user&.own1?(article) %>
-                  <div>
+                  <div class='ms-auto'>
                     <%= link_to edit_article_path(article) do %>
                       <i class="fa-solid fa-pen"></i>
                     <% end %>
@@ -26,6 +26,8 @@
                       <i class="fa-solid fa-trash"></i>
                     <% end %>
                   </div>
+                <% elsif logged_in? %>
+                  <%= render 'shared/favorite_buttons', { article: article } %>
                 <% end %>
               </div>
             </div>

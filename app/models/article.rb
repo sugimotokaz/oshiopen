@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :oshi_name
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_rich_text :content
 
