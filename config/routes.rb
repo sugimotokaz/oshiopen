@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[show edit update] do
     get :articles, on: :member  # プロフィールに対するユーザーごとの記事一覧
     resources :oshi_details, only: %i[new create edit update destroy], shallow: true
+    get :favorites, on: :member #プロフィールに対するユーザーごとのお気に入り記事一覧
   end
   resources :articles, only: %i[index new create show edit update destroy] do
     resources :comments, only: %i[create edit update destroy], shallow: true
   end
+  resources :favorites, only: %i[create destroy]
 end

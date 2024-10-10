@@ -66,6 +66,11 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def favorites
+    @profile = Profile.includes(user: :favorite_articles).find(params[:id])
+    @articles = @profile.user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
+  end
+
   private
 
   def set_user
