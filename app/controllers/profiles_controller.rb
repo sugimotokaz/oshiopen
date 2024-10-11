@@ -68,7 +68,13 @@ class ProfilesController < ApplicationController
 
   def favorites
     @profile = Profile.includes(user: :favorite_articles).find(params[:id])
-    @articles = @profile.user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
+
+    if @profile.user == current_user
+      @articles = @profile.user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
+    else
+      flash[:danger] = "他のユーザーのお気に入り一覧は閲覧できません"
+      redirect_to profile_path
+    end
   end
 
   private
