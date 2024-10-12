@@ -1,0 +1,7 @@
+<div class='ms-auto'>
+  <% if current_user.follow?(user) %>
+    <%= render 'shared/unfollow', { user: user } %>
+  <% else %>
+    <%= render 'shared/follow', { user: user } %>
+  <% end %>
+</div>

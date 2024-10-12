@@ -21,4 +21,5 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy], shallow: true
   end
   resources :favorites, only: %i[create destroy]
+  resources :relationships, only: %i[create destroy]
 end
