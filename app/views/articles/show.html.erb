@@ -24,8 +24,8 @@
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
               </div>
-              <% elsif logged_in? %>
-                <%= render 'shared/favorite_buttons', { article: @article } %>
+            <% elsif logged_in? %>
+              <%= render 'shared/favorite_buttons', { article: @article } %>
             <% end %>
           </div>
         </div>

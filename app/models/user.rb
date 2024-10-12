@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :following_users, through: :active_relationships, source: :followed
+  has_many :follower_users, through: :passive_relationships, source: :follower
 
   def own?(object)
     object.profile.user_id == id
@@ -20,6 +24,7 @@ class User < ApplicationRecord
     object.user_id == id
   end
 
+  # お気に入り機能に関するメソッド
   def favorite(article)
     favorite_articles << article
   end
@@ -31,4 +36,20 @@ class User < ApplicationRecord
   def favorite?(article)
     favorite_articles.include?(article)
   end
+  # ここまで
+
+  # フォロー機能に関するメソッド
+  def follow(user)
+    following_users << user
+  end
+
+  def unfollow(user)
+    following_users.destroy(user)
+  end
+
+  def follow?(user)
+    following_users.include?(user)
+  end
+  # ここまで
+
 end
