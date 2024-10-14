@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  skip_before_action :require_login, only: %i[show articles]
+  skip_before_action :require_login, only: %i[show my_articles]
   before_action :set_user, only: %i[new create edit update]
 
   def new
@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
     @oshi_details = @profile.fetch_oshi_details # 推しの詳細情報を取得
   end
 
-  def articles
+  def my_articles
     @profile = Profile.includes(user: :articles).find(params[:id])
     @articles = @profile.user.articles.includes(:oshi_name, :user).order(created_at: :desc)
   
@@ -67,14 +67,28 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def favorites
-    @profile = Profile.includes(user: :favorite_articles).find(params[:id])
-
-    if @profile.user == current_user
-      @articles = @profile.user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
+  def favorite_articles
+    @profile = Profile.includes(:user).find(params[:id])
+    user = @profile.user
+  
+    if user == current_user
+      @articles = user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
     else
       flash[:danger] = "他のユーザーのお気に入り一覧は閲覧できません"
-      redirect_to profile_path
+      redirect_to profile_path(@profile)
+    end
+  end
+
+  def follow_users
+    @profile = Profile.includes(:user).find(params[:id])
+    user = @profile.user
+
+    if user == current_user
+      # フォローしているユーザーを取得
+      @following_users = user.following_users.includes(:profile).order(created_at: :desc)
+    else
+      flash[:danger] = "他のユーザーのお気に入りユーザー一覧は閲覧できません"
+      redirect_to profile_path(@profile)
     end
   end
 

@@ -1,0 +1,14 @@
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mt-14">
+    <div class="w-full max-w-5xl">
+      <h1><%= @profile.name %>お気に入りユーザー一覧</h1>
+    </div>
+  </div>
+</div>
+<div>
+  <% if @following_users.present? %>
+    <%= render partial: "follow_user", collection: @following_users, as: :follow_user %>
+  <% else %>
+    <h1>お気に入りユーザーは登録されていません</h1>
+  <% end %>
+</div>

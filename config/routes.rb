@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :profiles, only: %i[show edit update] do
-    get :articles, on: :member  # プロフィールに対するユーザーごとの記事一覧
+    get :my_articles, on: :member  # プロフィールに対するユーザーごとの記事一覧
     resources :oshi_details, only: %i[new create edit update destroy], shallow: true
-    get :favorites, on: :member #プロフィールに対するユーザーごとのお気に入り記事一覧
+    get :favorite_articles, on: :member # プロフィールに対するユーザーごとのお気に入り記事一覧
+    get :follow_users, on: :member # プロフィールに対するユーザーごとのお気に入りユーザー一覧
   end
   resources :articles, only: %i[index new create show edit update destroy] do
     resources :comments, only: %i[create edit update destroy], shallow: true
