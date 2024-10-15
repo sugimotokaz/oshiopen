@@ -1,10 +1,38 @@
-<div class="navbar bg-base-300">
+<div class="navbar bg-base-300 flex justify-between">
   <div class="flex-1">
     <%= link_to "推しOPEN", root_path, class: 'btn btn-ghost text-xl' %>
   </div>
-  <div class="space-x-4">
+  <div class="space-x-4 hidden lg:block">
     <%= link_to "記事一覧", articles_path, class: 'btn btn-neutral' %>
     <%= link_to "ログイン", login_path, class: 'btn btn-neutral' %>
     <%= link_to "新規作成", sign_up_path, class: 'btn btn-neutral' %>
+  </div>
+
+  <!-- サイドメニューに関する記述 -->
+  <div class="lg:hidden">
+    <div class="drawer drawer-end">
+      <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <!-- サイドメニューを開くためのボタン -->
+        <label for="my-drawer-4" class="drawer-button btn btn-neutral"><i class="fa-solid fa-bars"></i></label>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <!-- サイドバーの内容 -->
+          <li><%= link_to "記事一覧", articles_path %></li>
+          <li><%= link_to "ログイン", login_path %></li>
+          <li><%= link_to "新規作成", sign_up_path %></li>
+          <div class="divider divider-neutral"></div>
+          <li><%= link_to "プライバシーリテラシー", "#" %></li>
+          <li><%= link_to "利用規約", "#" %></li>
+          <li><%= link_to "お問い合わせフォーム", "#" %></li>
+          <div class="divider divider-neutral"></div>
+          <div class="text-center">
+            <p>Copyright@ 2024 推しOPEN</p>
+          </div>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
