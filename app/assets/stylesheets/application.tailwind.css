@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'actiontext.css';
+
+.drawer-side {
+  z-index: 9999;
+}
