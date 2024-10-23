@@ -5,7 +5,7 @@
   <div class="space-x-4 hidden lg:block">
     <%= link_to "記事一覧", articles_path, class: 'btn btn-neutral' %>
     <%= link_to "ログイン", login_path, class: 'btn btn-neutral' %>
-    <%= link_to "新規作成", sign_up_path, class: 'btn btn-neutral' %>
+    <%= link_to "新規作成", new_user_path, class: 'btn btn-neutral' %>
   </div>
 
   <!-- サイドメニューに関する記述 -->
@@ -22,7 +22,7 @@
           <!-- サイドバーの内容 -->
           <li><%= link_to "記事一覧", articles_path %></li>
           <li><%= link_to "ログイン", login_path %></li>
-          <li><%= link_to "新規作成", sign_up_path %></li>
+          <li><%= link_to "新規作成", new_user_path %></li>
           <div class="divider divider-neutral"></div>
           <li><%= link_to "プライバシーリテラシー", "#" %></li>
           <li><%= link_to "利用規約", "#" %></li>

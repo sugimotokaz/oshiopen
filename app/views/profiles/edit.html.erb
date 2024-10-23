@@ -3,9 +3,10 @@
     <div class="w-full max-w-5xl">
       <h1 class="text-2xl font-bold mb-10">プロフィール編集</h1>
       <%= form_with model: @profile do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-10">
           <%= f.label :name, "ニックネーム", class: "block mb-1" %>
-          <%= f.text_field :name, class: "input input-bordered w-full max-w-xs" %>
+          <%= f.text_field :name, value: @profile.user.name, class: "input input-bordered w-full max-w-xs" %>
         </div>
         <div class="mb-3">
           <%= f.label :profile_image, "プロフィール画像", class: "block mb-1" %>

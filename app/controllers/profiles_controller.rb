@@ -21,6 +21,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
+      @profile.user.update(name: params[:profile][:name]) # nameカラムの更新
       flash[:success] = "プロフィールを更新しました"
       redirect_to profile_path
     else
@@ -99,7 +100,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :profile_image, :profile_image_cache, :gender, :birth_year, :self_introduction)
+    params.require(:profile).permit(:profile_image, :profile_image_cache, :gender, :birth_year, :self_introduction)
   end
 
 end
