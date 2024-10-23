@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  validates :name, presence: true, length: { maximum: 25 }
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
@@ -15,6 +16,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :active_relationships, source: :followed
   has_many :follower_users, through: :passive_relationships, source: :follower
+
+  after_create :create_profile
 
   def own?(object)
     object.profile.user_id == id
@@ -51,5 +54,12 @@ class User < ApplicationRecord
     following_users.include?(user)
   end
   # ここまで
+
+  private
+
+  # プロフィールを自動作成
+  def create_profile
+    build_profile.save
+  end
 
 end

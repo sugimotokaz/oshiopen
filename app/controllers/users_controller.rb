@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
   def new
-    @sign_up_form = SignUpForm.new
+    @user = User.new
   end
 
   def create
-    @sign_up_form = SignUpForm.new(sign_up_form_params)
-    if @sign_up_form.save
-      auto_login(@sign_up_form.user)
+    @user = User.new(user_params)
+    if @user.save
+      auto_login(@user)
       flash[:success] = "ユーザー登録が完了しました"
       redirect_to root_path # 後にプロフィール詳細ページに移動するように変更
     else
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
 
   private
 
-  def sign_up_form_params
-    params.require(:sign_up_form).permit(:email, :password, :password_confirmation, :name)
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end

@@ -4,7 +4,7 @@
       <div class="bg-base-200 min-h-3.5 p-2">
         <div class="hero-content flex-col lg:flex-row">
           <%= image_tag @profile.profile_image.url, class: "w-24 rounded-full" %>
-          <p class="text-4xl font-bold"><%= @profile.name %></p>
+          <p class="text-4xl font-bold"><%= @profile.user.name %></p>
         </div>
         <div class="flex justify-center m-4">
           <div class="w-full max-w-3xl">
@@ -37,7 +37,7 @@
   <div class="flex justify-center">
     <div class="w-full max-w-5xl">
       <div class="bg-base-200 min-h-3.5 p-2">
-        <h1><%= link_to "#{@profile.name}記事一覧", my_articles_profile_path(@profile) %></h1>
+        <h1><%= link_to "#{@profile.user.name}記事一覧", my_articles_profile_path(@profile) %></h1>
       </div>
     </div>
   </div>
