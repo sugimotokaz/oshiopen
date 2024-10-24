@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :active_relationships, source: :followed
   has_many :follower_users, through: :passive_relationships, source: :follower
+  # Google認証に関するアソシエーション
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 
   after_create :create_profile
 

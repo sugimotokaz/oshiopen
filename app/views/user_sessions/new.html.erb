@@ -11,8 +11,11 @@
           <%= f.label :password, class: "block mb-3" %>
           <%= f.password_field :password, class: "input input-bordered w-full max-w-xs" %>
         </div>
-          <%= f.submit "ログイン", class: 'btn btn-neutral' %>
-        <div class="mt-10 mb-10">
+          <%= f.submit "ログイン", class: 'btn btn-neutral mb-5' %>
+          <%= link_to auth_at_provider_path(provider: :google) do %>
+            <%= image_tag "Sign_up_with_Google.png" %>
+          <% end %>
+        <div class="mt-5 mb-10">
           <%= link_to "新規作成ページへ", new_user_path, class: "link link-hover" %>
         </div>
       <% end %>
