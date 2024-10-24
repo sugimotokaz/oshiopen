@@ -20,7 +20,10 @@
           <%= f.label :password_confirmation, class: "block mb-3" %>
           <%= f.password_field :password_confirmation, class: "input input-bordered w-full max-w-xs" %>
         </div>
-          <%= f.submit "登録", class: 'btn btn-neutral' %>
+          <%= f.submit "登録", class: 'btn btn-neutral mb-5' %>
+          <%= link_to auth_at_provider_path(provider: :google) do %>
+            <%= image_tag "Sign_up_with_Google.png" %>
+          <% end %>
         <div class="mt-10 mb-10">
           <%= link_to "ログインページへ", login_path, class: "link link-hover" %>
         </div>

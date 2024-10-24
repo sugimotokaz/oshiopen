@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: %i[create destroy]
   resources :relationships, only: %i[create destroy]
+  # Google認証に関するルーティング
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" 
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 end
