@@ -1,2 +1,4 @@
+default_url_options:
+    host: 'https://www.oshiopen.com'
 sorcery:
     google_callback_url: 'https://www.oshiopen.com/oauth/callback?provider=google'
