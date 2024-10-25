@@ -58,6 +58,8 @@ group :development do
   gem "web-console"
   gem 'derailed_benchmarks'
   gem 'statistics'
+  gem 'letter_opener_web', '~> 3.0' # 開発環境において、送信されるメールをブラウザで確認できる
+  
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
