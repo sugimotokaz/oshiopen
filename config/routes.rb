@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+
+  # 開発環境へのメールテストに関する記述
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root "static_pages#top"
   resources :users, only: %i[new create]
   get 'login', to: 'user_sessions#new'
@@ -22,6 +25,7 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: %i[create destroy]
   resources :relationships, only: %i[create destroy]
+  resources :password_resets, only: %i[new create edit update]
   # Google認証に関するルーティング
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" 
