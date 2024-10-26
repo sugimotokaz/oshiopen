@@ -6,9 +6,12 @@
   </div>
 </div>
 <div>
-  <% if @following_users.present? %>
-    <%= render partial: "follow_user", collection: @following_users, as: :follow_user %>
-  <% else %>
-    <h1>お気に入りユーザーは登録されていません</h1>
-  <% end %>
+  <div>
+    <% if @following_users.present? %>
+      <%= render partial: "follow_user", collection: @following_users, as: :follow_user %>
+    <% else %>
+      <h1>お気に入りユーザーは登録されていません</h1>
+    <% end %>
+  </div>
+  <%= paginate @following_users %>
 </div>

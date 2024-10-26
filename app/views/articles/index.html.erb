@@ -1,7 +1,10 @@
 <div>
-  <% if @articles.present? %>
-    <%= render partial: 'article', collection: @articles %>
-  <% else %>
-    <h1>記事はありません</h1>
-  <% end %>
+  <div>
+    <% if @articles.present? %>
+      <%= render partial: 'article', collection: @articles %>
+    <% else %>
+      <h1>記事はありません</h1>
+    <% end %>
+  </div>
+  <%= paginate @articles %>
 </div>

@@ -30,6 +30,9 @@ class ArticlesController < ApplicationController
       # ログインしていない場合は「選択なし」の記事のみ表示
       @articles = @articles.where(visible_gender: 0, visible_oshi: false)
     end
+
+    # ページネーションを追加
+    @articles = @articles.page(params[:page])
   end
 
   def new
