@@ -84,3 +84,5 @@ gem 'dotenv-rails' # 環境変数の設定
 gem 'aws-sdk-s3' # 外部ストレージに画像を保存するのに手助けしてくれる（active strage)
 
 gem 'config'
+
+gem 'kaminari'

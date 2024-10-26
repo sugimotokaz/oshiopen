@@ -1,0 +1,34 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<div class="join text-xs mt-8 mx-auto flex justify-center">
+  <%= paginator.render do -%>
+    <nav class="pagination" role="navigation" aria-label="pager">
+
+      <%# 現在開いているページが1ページ目ではない場合、最初の「1」へのリンクを表示する %>
+      <%= first_page_tag unless current_page.first? %>
+      <%# 1つだけ前のページに移動するボタンは必要ないので削除 %>
+      
+      <% each_page do |page| -%>
+        <% if page.display_tag? -%>
+          <%# 1つ1つのページへのボタン「1」「2」などの記述 %>
+          <%= page_tag page %>
+        <% elsif !page.was_truncated? -%>
+          <%# 「・・・」を表示させるための記述 %>
+          <%= gap_tag %>
+        <% end -%>
+      <% end -%>
+      <% unless current_page.out_of_range? %>
+        
+        <%# 1つだけ後ろのページに移動するボタンは必要ないので削除 %>
+        <%# 現在開いているページが最後のページではない場合、最後のページへのリンクを表示する %>
+        <%= last_page_tag unless current_page.last? %>
+      <% end %>
+    </nav>
+  <% end -%>
+</div>

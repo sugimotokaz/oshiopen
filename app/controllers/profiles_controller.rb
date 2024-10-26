@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @user = @profile.user  # プロフィール所有者のユーザーを取得
-    @oshi_details = @profile.fetch_oshi_details # 推しの詳細情報を取得
+    @oshi_details = @profile.fetch_oshi_details.page(params[:page]).per(2) # 推しの詳細情報を取得
   end
 
   def my_articles
@@ -66,6 +66,8 @@ class ProfilesController < ApplicationController
       # ログインしていない場合は「選択なし」の記事のみ表示
       @articles = @articles.where(visible_gender: 0, visible_oshi: false)
     end
+
+    @articles = @articles.page(params[:page])
   end
 
   def favorite_articles
@@ -78,6 +80,8 @@ class ProfilesController < ApplicationController
       flash[:danger] = "他のユーザーのお気に入り一覧は閲覧できません"
       redirect_to profile_path(@profile)
     end
+
+    @articles = @articles.page(params[:page])
   end
 
   def follow_users
@@ -91,6 +95,8 @@ class ProfilesController < ApplicationController
       flash[:danger] = "他のユーザーのお気に入りユーザー一覧は閲覧できません"
       redirect_to profile_path(@profile)
     end
+
+    @following_users = @following_users.page(params[:page])
   end
 
   private
