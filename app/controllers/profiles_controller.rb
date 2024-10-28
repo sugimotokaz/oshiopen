@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @user = @profile.user  # プロフィール所有者のユーザーを取得
-    @oshi_details = @profile.fetch_oshi_details.page(params[:page]).per(2) # 推しの詳細情報を取得
+    @oshi_details = @profile.fetch_oshi_details.page(params[:page]).per(5) # 推しの詳細情報を取得
   end
 
   def my_articles

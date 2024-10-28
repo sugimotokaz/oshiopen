@@ -2,11 +2,13 @@
   <div class="flex-1">
     <%= link_to "推しOPEN", root_path, class: 'btn btn-ghost text-xl' %>
   </div>
+
+  <!-- PC版に関する記述 -->
   <div class="space-x-4 hidden lg:flex items-center">
     <%= link_to "記事一覧", articles_path, class: 'btn btn-neutral' %>
     <%= link_to "記事作成", new_article_path, class: 'btn btn-neutral' %>
 
-    <!-- PC版のサイドメニューに関する記述 -->
+    <!-- サイドメニューに関する記述 -->
     <div class="drawer drawer-end">
       <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">

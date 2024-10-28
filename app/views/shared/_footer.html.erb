@@ -1,10 +1,22 @@
-<footer class="footer bg-base-300 text-ghost-content p-5 flex flex-col items-center">
-  <div class="flex justify-center space-x-5">
-    <a class="link link-hover">プライバシーリテラシー</a>
-    <a class="link link-hover">利用規約</a>
-    <a class="link link-hover">お問い合わせフォーム</a>
-  </div>
-  <div class="text-center">
-    <p>Copyright@ 2024 推しOPEN</p>
-  </div>
+<footer class="footer bg-base-300 fixed bottom-0 flex justify-between w-full">
+  <%= link_to profile_path(current_user.profile), class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
+    <i class="fa-sharp-duotone fa-solid fa-house"></i>
+    <p>マイページ</p>
+  <% end %>
+
+  <%= link_to articles_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
+    <i class="fa-sharp-duotone fa-solid fa-list"></i>
+    <p>記事一覧</p>
+  <% end %>
+
+  <%= link_to new_article_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
+    <i class="fa-sharp-duotone fa-solid fa-pen-to-square"></i>
+    <p>記事作成</p>
+  <% end %>
+
+  <%= link_to logout_path, data: { turbo_method: :delete }, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
+    <i class="fa-sharp-duotone fa-solid fa-right-from-bracket"></i>
+    <p>ログアウト</p>
+  <% end %>
+
 </footer>
