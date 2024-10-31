@@ -66,4 +66,12 @@ class User < ApplicationRecord
     build_profile.save
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name] # usersテーブルのnameカラムを検索対象に指定
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[]
+  end
+
 end

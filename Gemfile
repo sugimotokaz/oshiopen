@@ -86,3 +86,5 @@ gem 'aws-sdk-s3' # 外部ストレージに画像を保存するのに手助け�
 gem 'config'
 
 gem 'kaminari'
+
+gem 'ransack'
