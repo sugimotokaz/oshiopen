@@ -17,4 +17,12 @@ class Article < ApplicationRecord
   validates :visible_oshi, inclusion: { in: [true, false] }
   validates :content, presence: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title content]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user oshi_name] # 関連モデルを指定して検索可能に
+  end
+
 end

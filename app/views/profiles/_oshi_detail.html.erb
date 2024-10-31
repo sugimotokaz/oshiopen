@@ -1,36 +1,34 @@
-
-        <div class="m-4">
-          <div id="oshi_detail-id-<%= oshi_detail.id %>">
-            <details class="collapse bg-base-300">
-              <summary class="collapse-title text-xl font-medium">
-                <div class="hero-content flex-col lg:flex-row">
-                  <%= image_tag oshi_detail.oshi_image.url, class: "w-24 rounded-full" %>
-                  <%= oshi_detail.oshi_name.name %>
-                </div>
-              </summary>
-              <div class="collapse-content">
-                <div class="m-1">
-                  <p><strong>好きな理由</strong></p>
-                  <p><%= oshi_detail.reason_for_favorite %></p>
-                </div>
-                <div class="m-1">
-                  <p><strong>好きになったキッカケ</strong></p>
-                  <p><%= oshi_detail.trigger_for_favorite %></p>
-                </div>
-                <div class="m-1">
-                  <p><strong>推し活履歴</strong></p>
-                  <p><%= oshi_detail.activity_history %></p>
-                </div>
-                <% if current_user&.own?(oshi_detail) %>
-                  <%= link_to edit_oshi_detail_path(oshi_detail) do %>
-                    <i class="fa-solid fa-pen"></i>
-                  <% end %>
-                  <%= link_to oshi_detail_path(oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-                    <i class="fa-solid fa-trash"></i>
-                  <% end %>
-                <% end %>
-              </div>
-            </details>
-          </div>
+<div class="m-4">
+  <div id="oshi_detail-id-<%= oshi_detail.id %>">
+    <details class="collapse bg-base-300">
+      <summary class="collapse-title text-xl font-medium">
+        <div class="hero-content flex-col lg:flex-row">
+          <%= image_tag oshi_detail.oshi_image.url, class: "w-24 rounded-full" %>
+          <%= oshi_detail.oshi_name.name %>
         </div>
-
+      </summary>
+      <div class="collapse-content">
+        <div class="m-1">
+          <p><strong>好きな理由</strong></p>
+          <p><%= oshi_detail.reason_for_favorite %></p>
+        </div>
+        <div class="m-1">
+          <p><strong>好きになったキッカケ</strong></p>
+          <p><%= oshi_detail.trigger_for_favorite %></p>
+        </div>
+        <div class="m-1">
+          <p><strong>推し活履歴</strong></p>
+          <p><%= oshi_detail.activity_history %></p>
+        </div>
+        <% if current_user&.own?(oshi_detail) %>
+          <%= link_to edit_oshi_detail_path(oshi_detail) do %>
+            <i class="fa-solid fa-pen"></i>
+          <% end %>
+          <%= link_to oshi_detail_path(oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </details>
+  </div>
+</div>

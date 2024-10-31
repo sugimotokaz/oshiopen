@@ -1,38 +1,31 @@
-<div class="container mx-auto px-4">
-  <div class="flex justify-center">
-    <div class="w-full max-w-5xl">
-      <div class="bg-base-200 min-h-3.5 p-2">
-        <div class="m-1">
-          <div id="article-id-<%= article.id %>">
-            <div class="card bg-base-100 max-w-4xl shadow-xl">
-              <div class="card-body">
-                <h3><%= article.oshi_name.name %></h3>
-                <h2 class="card-title">
-                  <%= link_to article.title, article_path(article) %>
-                </h2>
-                <% if article.notice.present? %>
-                  <h3 class="text-pink-500">注意書き：<%= article.notice %></h3>
-                <% end %>
-                <h3>作成者：<%= link_to article.user.name, profile_path(article.user.profile) %></h3>
-                <h3>カテゴリ：<%= article.category %></h3>
-                <h3>作成日：<%= l article.created_at, format: :short %></h3>
-                <% if current_user&.own1?(article) %>
-                  <div class='ms-auto'>
-                    <%= link_to edit_article_path(article) do %>
-                      <i class="fa-solid fa-pen"></i>
-                    <% end %>
-                    <%= link_to article_path(article), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-                      <i class="fa-solid fa-trash"></i>
-                    <% end %>
-                  </div>
-                <% elsif logged_in? %>
-                  <%= render 'shared/favorite_buttons', { article: article } %>
-                <% end %>
-              </div>
-            </div>
+<div class="m-2">
+  <div id="article-id-<%= article.id %>">
+    <div class="card bg-base-100 max-w-4xl shadow-xl">
+      <div class="card-body">
+        <h3><%= article.oshi_name.name %></h3>
+        <h2 class="card-title">
+          <%= link_to article.title, article_path(article) %>
+        </h2>
+        <% if article.notice.present? %>
+          <h3 class="text-pink-500">注意書き：<%= article.notice %></h3>
+        <% end %>
+        <h3>作成者：<%= link_to article.user.name, profile_path(article.user.profile) %></h3>
+        <h3>カテゴリ：<%= article.category %></h3>
+        <h3>作成日：<%= l article.created_at, format: :short %></h3>
+        <% if current_user&.own1?(article) %>
+          <div class='ms-auto'>
+            <%= link_to edit_article_path(article) do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+            <%= link_to article_path(article), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
           </div>
-        </div>
+        <% elsif logged_in? %>
+          <%= render 'shared/favorite_buttons', { article: article } %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+

@@ -2,7 +2,9 @@ class ArticlesController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
   def index
-    @articles = Article.includes(:oshi_name, user: :profile).order(created_at: :desc)
+
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(distinct: true).includes(:oshi_name, user: :profile).order(created_at: :desc)
   
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
