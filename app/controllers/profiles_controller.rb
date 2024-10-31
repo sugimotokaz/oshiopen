@@ -38,7 +38,8 @@ class ProfilesController < ApplicationController
 
   def my_articles
     @profile = Profile.includes(user: :articles).find(params[:id])
-    @articles = @profile.user.articles.includes(:oshi_name, :user).order(created_at: :desc)
+    @q = @profile.user.articles.ransack(params[:q])
+    @articles = @q.result(distinct: true).includes(:oshi_name, :user).order(created_at: :desc)
   
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
@@ -75,7 +76,8 @@ class ProfilesController < ApplicationController
     user = @profile.user
   
     if user == current_user
-      @articles = user.favorite_articles.includes(:oshi_name, :user).order(created_at: :desc)
+      @q = user.favorite_articles.ransack(params[:q])
+      @articles = @q.result(distinct: true).includes(:oshi_name, :user).order(created_at: :desc)
     else
       flash[:danger] = "他のユーザーのお気に入り一覧は閲覧できません"
       redirect_to profile_path(@profile)
