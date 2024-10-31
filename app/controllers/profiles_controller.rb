@@ -91,8 +91,9 @@ class ProfilesController < ApplicationController
     user = @profile.user
 
     if user == current_user
+      @q = user.following_users.ransack(params[:q])
       # フォローしているユーザーを取得
-      @following_users = user.following_users.includes(:profile).order(created_at: :desc)
+      @following_users = @q.result(distinct: true).includes(:profile).order(created_at: :desc)
     else
       flash[:danger] = "他のユーザーのお気に入りユーザー一覧は閲覧できません"
       redirect_to profile_path(@profile)

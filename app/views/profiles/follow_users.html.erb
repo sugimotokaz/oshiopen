@@ -3,6 +3,9 @@
     <div class="w-full max-w-5xl">
       <h1 class="text-center text-3xl font-bold mt-10 mb-4"><%= @profile.user.name %>お気に入りユーザー一覧</h1>
 
+      <!-- 検索フォーム -->
+      <%= render 'user_search_form', q: @q, url: follow_users_profile_path(@profile) %>
+
       <!-- ユーザー一覧 -->
       <div class="bg-base-200 min-h-3.5 p-2">
         <% if @following_users.present? %>
