@@ -19,6 +19,7 @@
             <p>自己紹介：</p>
             <p><%= follow_user.profile.self_introduction %></p>
           </div>
+          <%= render 'shared/follow_buttons', { user: follow_user } %>
         </div>
       </div>
     </div>
