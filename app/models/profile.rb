@@ -14,4 +14,8 @@ class Profile < ApplicationRecord
     oshi_details.includes(:oshi_name) # N+1問題を避けるための例
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[gender birth_year] 
+  end
+
 end
