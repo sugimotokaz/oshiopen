@@ -1,6 +1,9 @@
 <%= search_form_for q, url: url do |f| %>
   <div class="flex mb-4">
-    <%= f.search_field :title_or_user_name_or_oshi_name_name_cont, placeholder: "タイトル、推し名、または作成者名で検索", class: "input input-bordered flex-1 w-full max-auto" %>
+    <%= f.search_field :title_cont, placeholder: "タイトルで検索", class: "input input-bordered flex-1 w-full max-auto mr-2" %>
+    <%= f.search_field :oshi_name_name_cont, placeholder: "推し名で検索", class: "input input-bordered flex-1 w-full max-auto mr-2" %>
+    <%= f.search_field :user_name_cont, placeholder: "作成者名で検索", class: "input input-bordered flex-1 w-full max-auto mr-2" %>
+    <%= f.select :category_eq, Article.categories.keys.map.with_index { |k, i| [t("enum.article.category.#{k}"), i] }, { include_blank: 'すべて' }, class: "input input-bordered" %>
     <div class="flex-none ml-2">
       <%= f.submit class: 'btn btn-primary' %>
     </div>
