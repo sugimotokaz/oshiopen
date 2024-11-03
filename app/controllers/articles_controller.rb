@@ -43,6 +43,7 @@ class ArticlesController < ApplicationController
 
   def create
     oshi_name_name = params[:article][:oshi_name_name]
+    tag_name = params[:article][:tag_name]
 
     if oshi_name_name.present?
       oshi_name = OshiName.find_or_create_by(name: oshi_name_name.strip)
@@ -50,6 +51,14 @@ class ArticlesController < ApplicationController
 
     @article = current_user.articles.build(article_params)
     @article.oshi_name = oshi_name if oshi_name
+
+    if tag_name.present?
+      tags = tag_name.split("、").map(&:strip).uniq
+      tags.each do |name|
+        tag = Tag.find_or_create_by(name: name)
+        @article.tags << tag unless @article.tags.include?(tag)
+      end
+    end
 
     if @article.save
       flash[:success] = "記事を作成しました"
@@ -116,6 +125,7 @@ class ArticlesController < ApplicationController
 
   def update
     oshi_name_name = params[:article][:oshi_name_name]
+    tag_name = params[:article][:tag_name]
 
     if oshi_name_name.present?
       oshi_name = OshiName.find_or_create_by(name: oshi_name_name.strip)
@@ -123,6 +133,15 @@ class ArticlesController < ApplicationController
 
     @article = current_user.articles.find(params[:id])
     @article.oshi_name = oshi_name if oshi_name
+
+    if tag_name.present?
+      @article.tags.clear
+      tags = tag_name.split("、").map(&:strip).uniq
+      tags.each do |name|
+        tag = Tag.find_or_create_by(name: name)
+        @article.tags << tag unless @article.tags.include?(tag)
+      end
+    end
 
     if @article.update(article_params)
       flash[:success] = "記事を更新しました"

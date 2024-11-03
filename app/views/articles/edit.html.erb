@@ -25,6 +25,10 @@
           <%= f.rich_text_area :content %>
         </div>
         <div class="mb-10">
+          <%= f.label :tag_name, "タグ", class: "block mb-1" %>
+          <%= f.text_field :tag_name, placeholder: "、で区切って入力してください", value: params[:article] ? params[:article][:tag_name] : @article.tags.map(&:name).join('、'), class: "input input-bordered w-full max-w-xs" %>
+        </div>
+        <div class="mb-10">
           <%= f.label :visible_gender, "公開先[性別]", class: "block mb-1" %>
           <%= f.select :visible_gender, Article.visible_genders.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
         </div>
@@ -32,7 +36,7 @@
           <%= f.label :visible_oshi, "公開先[タイトルと同じ推し]", class: "block mb-1" %>
           <%= f.check_box :visible_oshi, { checked: @article.visible_oshi }, true, false %>
         </div>
-          <%= f.submit "変更", class: 'btn btn-neutral mb-10' %>
+          <%= f.submit "更新", class: 'btn btn-neutral mb-10' %>
           <%= link_to "戻る", articles_path, class: 'btn btn-neutral mb-10 ml-5' %>
       <% end %>
     </div>
