@@ -3,8 +3,16 @@ class ArticlesController < ApplicationController
 
   def index
 
+    # Ransack検索オブジェクトを作成
     @q = Article.ransack(params[:q])
-    @articles = @q.result(distinct: true).includes(:oshi_name, user: :profile).order(created_at: :desc)
+  
+    # タグIDがパラメータにある場合、そのタグに関連する記事のみを取得
+    if params[:q] && params[:q][:tags_id_eq].present?
+      tag = Tag.find(params[:q][:tags_id_eq])
+      @articles = tag.articles.includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    else
+      @articles = @q.result(distinct: true).includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    end
   
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
@@ -43,6 +51,7 @@ class ArticlesController < ApplicationController
 
   def create
     oshi_name_name = params[:article][:oshi_name_name]
+    tag_name = params[:article][:tag_name]
 
     if oshi_name_name.present?
       oshi_name = OshiName.find_or_create_by(name: oshi_name_name.strip)
@@ -50,6 +59,14 @@ class ArticlesController < ApplicationController
 
     @article = current_user.articles.build(article_params)
     @article.oshi_name = oshi_name if oshi_name
+
+    if tag_name.present?
+      tags = tag_name.split("、").map(&:strip).uniq
+      tags.each do |name|
+        tag = Tag.find_or_create_by(name: name)
+        @article.tags << tag unless @article.tags.include?(tag)
+      end
+    end
 
     if @article.save
       flash[:success] = "記事を作成しました"
@@ -61,7 +78,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
+    # タグIDがパラメータにある場合、そのタグに関連する記事のみを取得
+    if params[:q] && params[:q][:tags_id_eq].present?
+      tag = Tag.find(params[:q][:tags_id_eq])
+      @articles = tag.articles.includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    else
+      @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
+    end
 
     if logged_in?
       # 作成者自身の場合は表示
@@ -116,6 +139,7 @@ class ArticlesController < ApplicationController
 
   def update
     oshi_name_name = params[:article][:oshi_name_name]
+    tag_name = params[:article][:tag_name]
 
     if oshi_name_name.present?
       oshi_name = OshiName.find_or_create_by(name: oshi_name_name.strip)
@@ -123,6 +147,15 @@ class ArticlesController < ApplicationController
 
     @article = current_user.articles.find(params[:id])
     @article.oshi_name = oshi_name if oshi_name
+
+    if tag_name.present?
+      @article.tags.clear
+      tags = tag_name.split("、").map(&:strip).uniq
+      tags.each do |name|
+        tag = Tag.find_or_create_by(name: name)
+        @article.tags << tag unless @article.tags.include?(tag)
+      end
+    end
 
     if @article.update(article_params)
       flash[:success] = "記事を更新しました"

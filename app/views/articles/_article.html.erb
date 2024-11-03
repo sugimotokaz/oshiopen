@@ -12,6 +12,7 @@
         <h3>カテゴリ：<%= article.category %></h3>
         <h3>作成者：<%= link_to article.user.name, profile_path(article.user.profile) %></h3>
         <h3>作成日：<%= l article.created_at, format: :short %></h3>
+        <%= render 'articles/tag', { article: article } %>
         <% if current_user&.own1?(article) %>
           <div class='ms-auto'>
             <%= link_to edit_article_path(article) do %>
