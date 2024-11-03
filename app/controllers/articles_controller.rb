@@ -3,8 +3,16 @@ class ArticlesController < ApplicationController
 
   def index
 
+    # Ransack検索オブジェクトを作成
     @q = Article.ransack(params[:q])
-    @articles = @q.result(distinct: true).includes(:oshi_name, user: :profile).order(created_at: :desc)
+  
+    # タグIDがパラメータにある場合、そのタグに関連する記事のみを取得
+    if params[:q] && params[:q][:tags_id_eq].present?
+      tag = Tag.find(params[:q][:tags_id_eq])
+      @articles = tag.articles.includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    else
+      @articles = @q.result(distinct: true).includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    end
   
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
@@ -70,7 +78,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
+    # タグIDがパラメータにある場合、そのタグに関連する記事のみを取得
+    if params[:q] && params[:q][:tags_id_eq].present?
+      tag = Tag.find(params[:q][:tags_id_eq])
+      @articles = tag.articles.includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
+    else
+      @article = Article.includes(:oshi_name, user: :profile).find(params[:id])
+    end
 
     if logged_in?
       # 作成者自身の場合は表示
