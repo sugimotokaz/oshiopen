@@ -13,10 +13,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
+  # フォロー機能に関するアソシエーション
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_users, through: :active_relationships, source: :followed
   has_many :follower_users, through: :passive_relationships, source: :follower
+  # 通知機能に関するアソシエーション
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   # Google認証に関するアソシエーション
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications

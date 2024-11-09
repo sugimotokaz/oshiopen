@@ -1,0 +1,17 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="m-1">
+  <div id="notification-id-<%= notification.id %>">
+    <div class="card bg-base-100 max-w-4xl mx-auto">
+      <div class="card-body">
+        <h2><%= link_to visitor.name, profile_path(visitor) %>さんが</h2>
+        <% case notification.action %>
+        <% when 'comment' %>
+          <% if notification.article.user_id == visited.id %>
+            <h2><%= link_to "あなたの投稿", notification.article %>にコメントしました</h2>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
