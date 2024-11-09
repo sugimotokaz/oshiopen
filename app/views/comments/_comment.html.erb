@@ -6,7 +6,7 @@
           <div class="m-1">
             <div class="card bg-base-100 max-w-4xl shadow-xl">
               <div class="card-body">
-                <h3><%= comment.user.profile.name %></h3>
+                <h3><%= comment.user.name %></h3>
                 <h3>作成日：<%= l comment.created_at, format: :short %></h3>
                 <h3><%= comment.body %></h3>
                 <% if current_user&.own1?(comment) %>

@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
   def create
+    @article = Article.find(params[:article_id])
     @comment = current_user.comments.build(create_comment_params)
-    @comment.save
+    if @comment.save
+      @article.create_notification_comment!(current_user, @comment.id)
+    end
   end
 
   def edit
