@@ -3,15 +3,23 @@
 <div class="m-1">
   <div id="notification-id-<%= notification.id %>">
     <div class="card bg-base-100 max-w-4xl mx-auto">
-      <div class="card-body">
-        <h2><%= link_to visitor.name, profile_path(visitor) %>さんが</h2>
-        <% case notification.action %>
-        <% when 'comment' %>
-          <% if notification.article.user_id == visited.id %>
-            <h2><%= link_to "あなたの投稿", notification.article %>にコメントしました</h2>
+      <%= link_to mark_as_read_notification_path(notification), method: :patch, class: "card-body flex flex-row items-center" do %>
+        <%= image_tag current_user.profile.profile_image.url, class: "w-12 rounded-full" %>
+        <div class="flex flex-col">
+          <% case notification.action %>
+          <% when 'comment' %>
+            <% if notification.article.user_id == visited.id %>
+              <h2><%= visitor.name %>さんがあなたの投稿にコメントしました</h2>
+            <% end %>
           <% end %>
+          <h3 class="text-slate-400">コメント投稿日：<%= l notification.created_at, format: :short %></h3>
+        </div>
+        <%# 未読の場合は丸を表示 %>
+        <% if notification.checked == false %>
+          <i class="fa-solid fa-circle content-center ml-auto"></i>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
+
