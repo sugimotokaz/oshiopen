@@ -33,4 +33,9 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index destroy] do
     patch :mark_as_read, on: :member
   end
+  # チャットルーム関連
+  resources :rooms, only: %i[index new create show edit update destroy] do
+    post 'join', to: 'user_rooms#create'     # ルームに参加する
+    delete 'leave', to: 'user_rooms#destroy' # ルームから退会する
+  end
 end
