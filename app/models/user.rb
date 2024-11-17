@@ -30,6 +30,7 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :joined_rooms, through: :user_rooms, source: :room
 
+  # usersテーブルのデータが作成された時にprofilesテーブルのデータも作成される
   after_create :create_profile
 
   def own?(object)
@@ -38,6 +39,10 @@ class User < ApplicationRecord
 
   def own1?(object)
     object.user_id == id
+  end
+
+  def owned_rooms?(object)
+    object.owner_id == id
   end
 
   # お気に入り機能に関するメソッド
