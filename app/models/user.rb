@@ -24,6 +24,11 @@ class User < ApplicationRecord
   # Google認証に関するアソシエーション
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
+  # ユーザーが作成したグループ（Room）の所有者
+  has_many :owned_rooms, class_name: "Room", foreign_key: "owner_id", dependent: :destroy
+  # ユーザーが参加しているグループ
+  has_many :user_rooms, dependent: :destroy
+  has_many :joined_rooms, through: :user_rooms, source: :room
 
   after_create :create_profile
 
@@ -60,6 +65,20 @@ class User < ApplicationRecord
 
   def follow?(user)
     following_users.include?(user)
+  end
+  # ここまで
+
+  # ルーム参加機能に関するメソッド
+  def join_room(room)
+    joined_rooms << room
+  end
+
+  def leave_room(room)
+    joined_rooms.destroy(room)
+  end
+
+  def joined_room?(room)
+    joined_rooms.include?(room)
   end
   # ここまで
 

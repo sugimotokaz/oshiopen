@@ -1,0 +1,19 @@
+<div id="room-id-<%= room.id %>">
+  <div class="card bg-base-100 max-w-4xl mx-auto shadow-xl">
+    <div class="card-body flex flex-row items-center grid grid-cols-3 gap-3">
+      <div class="flex flex-col">
+        <h1 class="text-xl"><%= room.name %></h1>
+      </div>
+      <div class="flex flex-col">
+        <h1><%= room.description %></h1>
+      </div>
+      <div>
+        <% if current_user.joined_room?(room) %>
+          <h1 class="text-green-400">参加中</h1>
+        <% else %>
+          <%= link_to "参加", room_join_path(room_id: room.id), class: "btn btn-neutral", id: "join-room-button-#{room.id}", data: { turbo_method: :post } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
