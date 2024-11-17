@@ -1,0 +1,13 @@
+<div class="navbar bg-base-300 flex justify-between">
+  <div class="flex-1">
+    <%= link_to "推しOPEN", root_path, class: 'btn btn-ghost text-xl' %>
+    <h1 class="text-3xl font-bold ml-4"><%= @room.name %></h1>
+  </div>
+  <div class="items-center">
+    <% if current_user&.owned_rooms?(@room) %>
+      <%= link_to "ルーム削除", room_path(@room), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-neutral" %>
+    <% else %>
+      <%= link_to "退会", room_leave_path(current_user.user_rooms.find_by(room_id: @room.id)), class: "btn btn-neutral", id: "leave-room-button-#{@room.id}", data: { turbo_method: :delete, turbo_confirm: "本当に退会しますか？" } %>
+    <% end %>
+  </div>
+</div>

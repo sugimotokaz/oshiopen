@@ -13,11 +13,13 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
+  <% if controller_name == "rooms" && action_name == "show" %>
+    <%= render 'shared/room_header' %>
+  <% elsif logged_in? %>
+    <%= render 'shared/header' %>
+  <% else %>
+    <%= render 'shared/before_login_header' %>
+  <% end %>
     
     <%= render 'shared/flash_message' %>
     <%= yield %>
