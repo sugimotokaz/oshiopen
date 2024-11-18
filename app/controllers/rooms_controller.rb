@@ -13,6 +13,8 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.owned_rooms.new(room_params)
     if @room.save
+      # チャットルーム作成者を自動的に参加させる
+      @room.users << current_user
       flash[:success] = "チャットルームが作成されました"
       redirect_to rooms_path
     else
