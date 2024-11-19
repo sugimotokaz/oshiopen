@@ -29,6 +29,8 @@ class User < ApplicationRecord
   # ユーザーが参加しているグループ
   has_many :user_rooms, dependent: :destroy
   has_many :joined_rooms, through: :user_rooms, source: :room
+  # メッセージに関するアソシエーション
+  has_many :messages, dependent: :destroy
 
   # usersテーブルのデータが作成された時にprofilesテーブルのデータも作成される
   after_create :create_profile

@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.page(params[:page]).per(15)
   end
 
   def new
@@ -13,6 +13,8 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.owned_rooms.new(room_params)
     if @room.save
+      # チャットルーム作成者を自動的に参加させる
+      @room.users << current_user
       flash[:success] = "チャットルームが作成されました"
       redirect_to rooms_path
     else
@@ -21,7 +23,10 @@ class RoomsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @message = Message.new
+    @messages = @room.messages.includes(:user).order(created_at: :asc)
+  end
 
   def edit; end
 

@@ -1,6 +1,9 @@
-<div class="navbar bg-base-300 flex justify-between">
+<div class="navbar bg-base-300 fixed top-0 flex justify-between">
   <div class="flex-1">
     <%= link_to "推しOPEN", root_path, class: 'btn btn-ghost text-xl' %>
+    <%= link_to rooms_path, class: 'btn btn-ghost ml-4' do %>
+      <i class="fa-solid fa-chevron-left"></i>
+    <% end %>
     <h1 class="text-3xl font-bold ml-4"><%= @room.name %></h1>
   </div>
   <div class="items-center">

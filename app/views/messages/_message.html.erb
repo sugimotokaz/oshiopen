@@ -1,0 +1,28 @@
+<div class="mt-2">
+  <div id="message-id-<%= message.id %>">
+
+    <div class="chat <%= message.user_id == current_user.id ? 'chat-end' : 'chat-start' %>">
+
+      <div class="chat-image avatar">
+        <div class="w-10 rounded-full">
+          <%= image_tag message.user.profile.profile_image.url %>
+        </div>
+      </div>
+
+      <div class="chat-header">
+        <%= message.user.name %>
+      </div>
+
+      <div class="chat-bubble">
+        <%= message.body %>
+      </div>
+
+      <div class="chat-footer">
+        <time class="text-xs opacity-50"><%= l message.created_at, format: :short %></time>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
