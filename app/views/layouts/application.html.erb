@@ -13,18 +13,22 @@
   </head>
 
   <body>
-  <% if controller_name == "rooms" && action_name == "show" %>
-    <%= render 'shared/room_header' %>
-  <% elsif logged_in? %>
-    <%= render 'shared/header' %>
-  <% else %>
-    <%= render 'shared/before_login_header' %>
-  <% end %>
-    
-    <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <% if controller_name == "rooms" && action_name == "show" %>
+      <%= render 'shared/room_header' %>
+    <% elsif logged_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
 
-    <% if logged_in? %>
+    <div class="pt-16 pb-28">
+      <%= render 'shared/flash_message' %>
+      <%= yield %>
+    </div>
+
+    <% if controller_name == "rooms" && action_name == "show" %>
+      <%= render 'shared/room_footer' %>
+    <% elsif logged_in? %>
       <%= render 'shared/footer' %>
     <% else %>
       <%= render 'shared/before_login_footer' %>

@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :check_owner, only: [:edit, :update, :destroy]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.page(params[:page]).per(15)
   end
 
   def new
@@ -23,7 +23,10 @@ class RoomsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @message = Message.new
+    @messages = @room.messages.includes(:user).order(created_at: :asc)
+  end
 
   def edit; end
 

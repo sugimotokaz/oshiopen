@@ -1,8 +1,10 @@
-<div class="container mx-auto px-4 mb-36">
+<div class="container mx-auto px-4">
   <div class="flex justify-center">
     <div class="w-full max-w-5xl">
       <h1 class="text-center text-3xl font-bold mt-10 mb-4">チャットルーム一覧</h1>
-      <%= link_to "チャットルーム作成", new_room_path, class: 'btn btn-neutral flex justify-center mb-4' %>
+      <div class="flex justify-center mb-4">
+        <%= link_to "チャットルーム作成", new_room_path, class: 'btn btn-neutral' %>
+      </div>
 
       <div class="bg-base-200 min-h-3.5 p-2">
         <% if @rooms.present? %>
@@ -11,6 +13,9 @@
           <h1 class="text-center text-xl">チャットルームはありません</h1>
         <% end %>
       </div>
+
+      <!-- ページネーション -->
+      <%= paginate @rooms %>
 
     </div>
   </div>

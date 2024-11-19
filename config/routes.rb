@@ -37,5 +37,6 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index new create show edit update destroy] do
     post 'join', to: 'user_rooms#create'     # ルームに参加する
     delete 'leave', to: 'user_rooms#destroy' # ルームから退会する
+    resources :messages, only: %i[create destroy], shallow: true
   end
 end
