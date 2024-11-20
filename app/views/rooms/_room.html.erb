@@ -4,17 +4,17 @@
       <div class="card-body flex flex-row items-center">
         
         <%# モーダルのボタン %>
-        <%= link_to "#", class: "flex flex-row flex-auto 3xl items-center hover:bg-gray-300", onclick: "my_modal_2.showModal();" do %>
+        <%= link_to "#", class: "flex flex-row flex-auto items-center hover:bg-gray-300", onclick: "document.getElementById('my_modal_#{room.id}').showModal();" do %>
           <div class="text-xl">
             <%= room.name %>
           </div>
         <% end %>
 
         <%# モーダルの内容 %>
-        <dialog id="my_modal_2" class="modal">
+        <dialog id="my_modal_<%= room.id %>" class="modal">
           <div class="modal-box size-2/5">
             <h1>説明</h1>
-            <h1 class="mt-1"><%= room.description %></p>
+            <h1 class="mt-1"><%= room.description %></h1>
             <div class="absolute inset-x-0 bottom-4 flex justify-center">
               <% if current_user.joined_room?(room) %>
                 <%= link_to "チャット画面へ", room_path(room), class: "btn btn-neutral" %>
