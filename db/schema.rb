@@ -115,16 +115,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_080733) do
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "visitor_id", null: false
     t.bigint "visited_id", null: false
-    t.bigint "article_id"
-    t.bigint "comment_id"
+    t.string "notifiable_type"
+    t.bigint "notifiable_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_notifications_on_article_id"
-    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
-    t.index ["visitor_id", "visited_id"], name: "index_notifications_on_visitor_id_and_visited_id"
+    t.index ["visitor_id", "visited_id"], name: "index_notifications_on_visitor_id_and_visited_id", unique: true
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
@@ -222,8 +221,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_18_080733) do
   add_foreign_key "favorites", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "articles"
-  add_foreign_key "notifications", "comments"
   add_foreign_key "notifications", "users", column: "visited_id"
   add_foreign_key "notifications", "users", column: "visitor_id"
   add_foreign_key "oshi_details", "oshi_names"
