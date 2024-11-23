@@ -39,4 +39,6 @@ Rails.application.routes.draw do
     delete 'leave', to: 'user_rooms#destroy' # ルームから退会する
     resources :messages, only: %i[create destroy], shallow: true
   end
+
+  get 'term', to: 'static_pages#term'
 end
