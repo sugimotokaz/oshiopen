@@ -41,4 +41,5 @@ Rails.application.routes.draw do
   end
 
   get 'term', to: 'static_pages#term'
+  get 'policy', to: 'static_pages#policy'
 end

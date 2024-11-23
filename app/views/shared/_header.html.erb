@@ -25,7 +25,7 @@
           <li><%= link_to "お気に入りユーザー一覧", follow_users_profile_path(current_user.profile) %></li>
           <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
           <div class="divider divider-neutral"></div>
-          <li><%= link_to "プライバシーリテラシー", "#" %></li>
+          <li><%= link_to "プライバシーリテラシー", policy_path %></li>
           <li><%= link_to "利用規約", term_path %></li>
           <li><%= link_to "お問い合わせフォーム", "#" %></li>
           <div class="divider divider-neutral"></div>
@@ -58,8 +58,8 @@
           <li><%= link_to "お気に入りユーザー一覧", follow_users_profile_path(current_user.profile) %></li>
           <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
           <div class="divider divider-neutral"></div>
-          <li><%= link_to "プライバシーリテラシー", "#" %></li>
-          <li><%= link_to "利用規約", "#" %></li>
+          <li><%= link_to "プライバシーリテラシー", policy_path %></li>
+          <li><%= link_to "利用規約", term_path %></li>
           <li><%= link_to "お問い合わせフォーム", "#" %></li>
           <div class="divider divider-neutral"></div>
           <div class="text-center">
