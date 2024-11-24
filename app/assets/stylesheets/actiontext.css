@@ -39,3 +39,12 @@
   list-style-type: decimal;
   margin-left: 20px;
 }
+
+.trix-content img {
+  max-width: 80%; /* 親要素の幅に収まる */
+  height: auto;    /* アスペクト比を保つ */
+  display: block;
+  margin: 0 auto; /* 左右の余白を自動で設定 */
+}
+
+
