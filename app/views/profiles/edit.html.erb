@@ -4,12 +4,14 @@
       <h1 class="text-2xl font-bold mb-10">プロフィール編集</h1>
       <%= form_with model: @profile do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
+
         <div class="mb-10">
-          <%= f.label :name, "ニックネーム", class: "block mb-1" %>
+          <%= f.label :name, class: "block mb-1" %>
           <%= f.text_field :name, value: @profile.user.name, class: "input input-bordered w-full max-w-xs" %>
         </div>
+
         <div class="mb-3">
-          <%= f.label :profile_image, "プロフィール画像", class: "block mb-1" %>
+          <%= f.label :profile_image, class: "block mb-1" %>
           <%= f.file_field :profile_image, class: "input input-bordered w-full max-w-xs", accept: 'image/*' %>
           <%= f.hidden_field :profile_image_cache %>
           <div class='mt-3 mb-8'>
@@ -19,18 +21,22 @@
                           size: '100x100' %>
           </div>
         </div>
+
         <div class="mb-10">
-          <%= f.label :gender, "性別", class: "block mb-1" %>
-          <%= f.select :gender, Profile.genders.keys.map { |w| [w.humanize, w] }, {}, class: "input input-bordered w-full max-w-xs" %>
+          <%= f.label :gender, class: "block mb-1" %>
+          <%= f.select :gender, Profile.genders_i18n.keys.map { |w| [I18n.t("enums.profile.gender.#{w}"), w] }, {}, class: "input input-bordered w-full max-w-xs" %>
         </div>
+
         <div class="mb-10">
-          <%= f.label :birth_year, "誕生年度", class: "block mb-1" %>
+          <%= f.label :birth_year, class: "block mb-1" %>
           <%= f.select :birth_year, options_for_select((1900..Time.now.year).to_a.reverse, selected: @profile.birth_year || '選択なし'), { include_blank: '選択なし' }, class: "input input-bordered w-full max-w-xs" %>
         </div>
+
         <div class="mb-10">
-          <%= f.label :self_introduction, "自己紹介", class: "block mb-1" %>
+          <%= f.label :self_introduction, class: "block mb-1" %>
           <%= f.text_area :self_introduction, class: "textarea textarea-bordered w-full max-w-3xl" %>
         </div>
+
           <%= f.submit "登録", class: 'btn btn-neutral mb-10' %>
           <%= link_to "戻る", profile_path, class: 'btn btn-neutral mb-10 ml-5' %>
       <% end %>
