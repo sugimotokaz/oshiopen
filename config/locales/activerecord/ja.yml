@@ -1,0 +1,52 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      article: 記事
+      profile: プロフィール
+    attributes:
+      user:
+        email: メールアドレス
+        name: ニックネーム
+        password: パスワード
+        password_confirmation: パスワード確認
+      article:
+        oshi_name_name: 推し名
+        title: タイトル
+        notice: 注意書き
+        category: カテゴリ
+        content: 本文
+        tag_name: タグ
+        visible_gender: 公開先[性別]
+        visible_oshi: 公開先[記事と同じ推し]
+        # エラーメッセージの推し名の日本語化が下記の設定でできる
+        oshi_name: 推し名
+      profile:
+        name: ニックネーム
+        profile_image: プロフィール画像
+        gender: 性別
+        birth_year: 誕生年度
+        self_introduction: 自己紹介
+      oshi_detail:
+        oshi_name_name: 推し名
+        oshi_image: 推し画像
+        reason_for_favorite: 好きな理由
+        trigger_for_favorite: 好きになったキッカケ
+        activity_history: 推し活履歴
+        # エラーメッセージの推し名の日本語化が下記の設定でできる
+        oshi_name: 推し名
+  enums:
+    article:
+      category:
+        others: その他
+        impression: 感想記事
+        introduction: 紹介記事
+      visible_gender:
+        not_selected: 選択なし
+        male: 男性
+        female: 女性
+    profile:
+      gender:
+        not_selected: 選択なし
+        male: 男性
+        female: 女性

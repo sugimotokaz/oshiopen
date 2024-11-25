@@ -88,3 +88,7 @@ gem 'config'
 gem 'kaminari'
 
 gem 'ransack'
+
+gem 'rails-i18n', '~> 7.0.0'
+
+gem 'enum_help'

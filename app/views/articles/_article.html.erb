@@ -9,9 +9,9 @@
         <% if article.notice.present? %>
           <h3 class="text-pink-500">注意書き：<%= article.notice %></h3>
         <% end %>
-        <h3>カテゴリ：<%= article.category %></h3>
+        <h3>カテゴリ：<%= article.category_i18n %></h3>
         <h3>作成者：<%= link_to article.user.name, profile_path(article.user.profile) %></h3>
-        <h3>作成日：<%= l article.created_at, format: :short %></h3>
+        <h3>作成日：<%= l article.created_at, format: :custom %></h3>
         <%= render 'articles/tag', { article: article } %>
         <% if current_user&.own1?(article) %>
           <div class='ms-auto'>

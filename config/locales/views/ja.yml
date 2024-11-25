@@ -1,0 +1,8 @@
+ja:
+  helpers:
+    label:
+      email: メールアドレス
+      password: パスワード
+  time:
+    formats:
+      custom: "%Y年%m月%d日"

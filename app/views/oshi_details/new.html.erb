@@ -3,12 +3,18 @@
     <div class="w-full max-w-5xl">
       <h1 class="text-2xl font-bold mb-10">推し登録</h1>
       <%= form_with model: @oshi_detail, url: profile_oshi_details_path(current_user.profile) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
         <div class="mb-10">
-          <%= f.label :oshi_name_name, "推し名", class: "block mb-1" %>
+          <div class="flex items-center mb-1">
+            <%= f.label :oshi_name_name, class: "block mr-1" %>
+            <p class="text-red-500">(必須)</p>
+          </div>
           <%= f.text_field :oshi_name_name, class: "input input-bordered w-full max-w-xs" %>
         </div>
+
         <div class="mb-3">
-          <%= f.label :oshi_image, "推し画像", class: "block mb-1" %>
+          <%= f.label :oshi_image, class: "block mb-1" %>
           <%= f.file_field :oshi_image, class: "input input-bordered w-full max-w-xs", accept: 'image/*' %>
           <%= f.hidden_field :profile_image_cache %>
           <div class='mt-3 mb-8'>
@@ -18,18 +24,22 @@
                           size: '100x100' %>
           </div>
         </div>
+
         <div class="mb-10">
-          <%= f.label :reason_for_favorite, "好きな理由", class: "block mb-1" %>
+          <%= f.label :reason_for_favorite, class: "block mb-1" %>
           <%= f.text_area :reason_for_favorite, class: "textarea textarea-bordered w-full max-w-3xl" %>
         </div>
+
         <div class="mb-10">
-          <%= f.label :trigger_for_favorite, "好きになったキッカケ", class: "block mb-1" %>
+          <%= f.label :trigger_for_favorite, class: "block mb-1" %>
           <%= f.text_area :trigger_for_favorite, class: "textarea textarea-bordered w-full max-w-3xl" %>
         </div>
+
         <div class="mb-10">
-          <%= f.label :activity_history, "推し活履歴", class: "block mb-1" %>
+          <%= f.label :activity_history, class: "block mb-1" %>
           <%= f.text_area :activity_history, class: "textarea textarea-bordered w-full max-w-3xl" %>
         </div>
+
           <%= f.submit "登録", class: 'btn btn-neutral mb-10' %>
           <%= link_to "戻る", profile_path(current_user.profile), class: 'btn btn-neutral mb-10 ml-5' %>
       <% end %>

@@ -1,13 +1,15 @@
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-8">
   <div class="flex justify-center mt-14">
-    <div class="w-full max-w-lg">
-      <h1 class="text-2xl font-bold mb-10">パスワードリセット申請</h1>
+    <div class="w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-8">パスワードリセット申請</h1>
       <%= form_with url: password_resets_path do |f| %>
-        <div class="mb-10">
-          <%= f.label :email, class: "block mb-3" %>
-          <%= f.email_field :email, class: "input input-bordered w-full max-w-xs" %>
+        <div class="mb-6">
+          <%= f.label :email, class: "block mb-2" %>
+          <%= f.email_field :email, class: "input input-bordered w-full" %>
         </div>
-        <%= f.submit "メールを送信する", class: 'btn btn-neutral mb-5' %>
+        <div class="mx-auto flex justify-center text-center mb-4">
+          <%= f.submit "メールを送信する", class: 'btn btn-neutral mb-5' %>
+        </div>
       <% end %>
     </div>
   </div>

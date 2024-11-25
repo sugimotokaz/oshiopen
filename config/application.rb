@@ -32,6 +32,10 @@ module Myapp
       g.skip_routes true         # ルーティングの記述を作成しない
     end
 
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+
     config.active_storage.variant_processor = :mini_magick
   end
 end
