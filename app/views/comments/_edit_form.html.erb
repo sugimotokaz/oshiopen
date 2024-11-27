@@ -1,19 +1,36 @@
-<div id="edit-form"
-  <div class="container mx-auto px-4">
-    <div class="flex justify-center">
-      <div class="w-full max-w-5xl">
-        <div class="bg-base-200 min-h-3.5 p-2">
-          <div class="m-1">
-            <div class="card bg-base-100 max-w-4xl shadow-xl">
-              <div class="card-body">
-                <h3><%= comment.user.profile.name %></h3>
-                <h3>作成日：<%= l comment.created_at, format: :short %></h3>
-                <%= form_with model: comment, url: comment_path(comment), method: :patch do |f| %>
-                  <div>
-                    <%= f.text_area :body, class: "textarea textarea-bordered w-full max-w-3xl" %>
+<div id="edit-form">
+  <div class="bg-base-200 min-h-3.5 py-1 px-2"> 
+    <div class="container mx-auto">
+      <div class="flex justify-center">
+        <div class="w-full max-w-3xl">
+          <div class="bg-base-200 min-h-3.5">
+            <div class="m-1">
+              <div class="card bg-base-100 max-w-3xl shadow-xl">
+                <div class="py-3 px-2">
+
+                  <div class="flex items-center mb-1">
+                    <div class="avatar mr-2">
+                      <div class="w-8 rounded-full">
+                        <%= image_tag comment.article.user.profile.profile_image.url %>
+                      </div>
+                    </div>
+                    <h1 class="text-base"><%= comment.user.name %></h1>
+                    <div class="ms-auto">
+                      <h1 class="text-xs"><%= l comment.created_at, format: :custom %></h1>
+                    </div>
                   </div>
-                  <%= f.submit "更新", class: 'btn btn-neutral mt-2' %>
-                <% end %>
+
+                  <%= form_with model: comment, url: comment_path(comment), method: :patch do |f| %>
+                    <div class="flex items-center space-x-4">
+                      <div class="flex-1">
+                        <%= f.text_area :body, class: "textarea textarea-bordered w-full min-h-24" %>
+                      </div>
+                      <div class="flex-none">
+                        <%= f.submit "更新", class: 'btn btn-neutral lg:btn-md btn-sm' %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <% if article.tags.any? %>
   <div class="tag">
     <% article.tags.each do |tag| %>
-      <span class="tag"><%= link_to tag.name, articles_path(q: { tags_id_eq: tag.id }), class: "badge badge-primary" %></span>
+      <span class="tag"><%= link_to tag.name, articles_path(q: { tags_id_eq: tag.id }), class: "badge badge-primary text-xs" %></span>
     <% end %>
   </div>
 <% end %>

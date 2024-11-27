@@ -1,9 +1,13 @@
 <div id="comment-form">
   <%= form_with model: comment, url: article_comments_path(article) do |f| %>
-    <div>
-      <%= f.label :body, "コメント", class: "block mb-1" %>
-      <%= f.text_area :body, class: "textarea textarea-bordered w-full max-w-3xl" %>
+    <%= f.label :body, "コメント", class: "block text-sm mb-1" %>
+    <div class="flex items-center space-x-4">
+      <div class="flex-1">
+        <%= f.text_area :body, class: "textarea textarea-bordered w-full min-h-24" %>
+      </div>
+      <div class="flex-none">
+        <%= f.submit "作成", class: 'btn btn-neutral lg:btn-md btn-sm' %>
+      </div>
     </div>
-      <%= f.submit "作成", class: 'btn btn-neutral mt-2' %>
   <% end %>
 </div>
