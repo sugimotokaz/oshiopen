@@ -3,7 +3,11 @@
     <div class="card bg-base-100 max-w-3xl min-h-20 shadow-xl">
       <div class="py-3 px-2">
 
-        <div class="mx-auto flex items-center justify-center">
+        <% if article.unpublished? %>
+          <h1 class="text-sm text-pink-500">非公開</h1>
+        <% end %>
+
+        <div class="mx-auto flex items-center justify-between">
           <h1 class="text-sm"><%= article.oshi_name.name %></h1>
           <% if current_user&.own1?(article) %>
             <div class='ms-auto mr-2'>
@@ -12,7 +16,7 @@
               <% end %>
             </div>
           <% elsif logged_in? %>
-            <div class='ms-auto mr-2'>
+            <div class='mr-2'>
               <%= render 'shared/favorite_buttons', { article: article } %>
             </div>
           <% end %>
@@ -43,6 +47,9 @@
           <%= render 'articles/tag', { article: article } %>
         </div>
 
+        
+          
+        
       </div>
     </div>
   </div>

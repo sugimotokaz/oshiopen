@@ -60,7 +60,8 @@
         </div>
 
         <div class="mx-auto flex justify-center text-center mb-10">
-          <%= f.submit "作成", class: 'btn btn-neutral mr-20' %>
+          <%= f.submit "公開", id: 'publishButton', name: 'published', class: 'btn btn-neutral mr-10' %>
+          <%= f.submit "非公開で保存", id: 'unpublishButton', name: 'unpublished', class: "btn btn-neutral mr-10" %>
           <%= link_to "戻る", articles_path, data: { turbo_method: :get, turbo_confirm: "記事は保存されていませんが、よろしいでしょうか？" }, class: 'btn btn-neutral' %>
         </div>
 

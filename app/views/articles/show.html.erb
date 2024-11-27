@@ -5,6 +5,10 @@
         <div class="flex justify-center m-2">
           <div class="w-full max-w-3xl">
 
+            <% if @article.unpublished? %>
+              <h1 class="text-base text-pink-500">非公開</h1>
+            <% end %>
+
             <div class="mx-auto flex items-center">
               <h1 class="text-base mb-1"><%= @article.oshi_name.name %></h1>
               <% if current_user&.own1?(@article) %>

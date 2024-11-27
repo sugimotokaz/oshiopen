@@ -13,6 +13,9 @@ class ArticlesController < ApplicationController
     else
       @articles = @q.result(distinct: true).includes(:oshi_name, :tags, user: :profile).order(created_at: :desc)
     end
+
+    # 公開中の記事のみを対象にフィルタリング
+    @articles = @articles.where(status: :published)
   
     if logged_in?
       # 作成した記事には常にアクセスできるようにする
@@ -68,11 +71,22 @@ class ArticlesController < ApplicationController
       end
     end
 
-    if @article.save
-      flash[:success] = "記事を作成しました"
-      redirect_to articles_path
+    if params[:unpublished].present?
+      @article.status = :unpublished
     else
-      flash.now[:danger] = "掲示板を作成できませんでした"
+      @article.status = :published
+    end
+
+    if @article.save
+      if @article.unpublished?
+        flash[:success] = "非公開で保存しました"
+        redirect_to my_articles_profile_path(current_user.profile)
+      else
+        flash[:success] = "記事を作成しました"
+        redirect_to articles_path
+      end
+    else
+      flash.now[:danger] = "記事を作成できませんでした"
       render :new, status: :unprocessable_entity
     end
   end
@@ -91,6 +105,13 @@ class ArticlesController < ApplicationController
       if current_user.id == @article.user_id
         # 作成者自身には表示するので、そのまま何もしない
       else
+        # 公開中（`status: :published`）の記事のみ表示
+        unless @article.published?
+          flash[:danger] = 'この記事は表示できません'
+          redirect_to articles_path
+          return
+        end
+
         # 性別によるフィルタリング
         if current_user.profile.gender.present?
           # ログインユーザーの性別に合わせてフィルタリング
@@ -122,7 +143,7 @@ class ArticlesController < ApplicationController
       end
     else
       # ログインしていない場合、「選択なし」の記事のみ表示
-      unless @article.visible_gender == "not_selected" && !@article.visible_oshi
+      unless @article.published? && @article.visible_gender == "not_selected" && !@article.visible_oshi
         flash[:danger] = 'この記事は表示できません'
         redirect_to articles_path
         return
@@ -157,9 +178,18 @@ class ArticlesController < ApplicationController
       end
     end
 
+    if params[:unpublished].present?
+      @article.status = :unpublished
+      success_message = "非公開にしました。"
+      redirect_path = my_articles_profile_path(current_user.profile)
+    else
+      @article.status = :published
+      success_message = "投稿を更新しました。"
+      redirect_path = articles_path
+    end
+
     if @article.update(article_params)
-      flash[:success] = "記事を更新しました"
-      redirect_to articles_path
+      redirect_to redirect_path, success: success_message
     else
       flash.now[:danger] = "記事を更新できませんでした"
       render :edit, status: :unprocessable_entity
@@ -176,6 +206,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :notice, :category, :visible_gender, :visible_oshi, :content)
+    params.require(:article).permit(:title, :notice, :category, :visible_gender, :visible_oshi, :status, :content)
   end
 end
