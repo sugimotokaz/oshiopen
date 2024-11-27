@@ -1,23 +1,23 @@
 <div class="container mx-auto px-8">
-  <div class="flex justify-center mt-14">
+  <div class="flex justify-center mt-8">
     <div class="w-full max-w-md">
       <h1 class="text-2xl font-bold mb-6">ユーザー登録</h1>
       <%= form_with model: @user do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="mb-4">
-          <%= f.label :name, class: "block mb-2" %>
+          <%= f.label :name, class: "block mb-1" %>
           <%= f.text_field :name, class: "input input-bordered w-full" %>
         </div>
         <div class="mb-4">
-          <%= f.label :email, class: "block mb-2" %>
+          <%= f.label :email, class: "block mb-1" %>
           <%= f.email_field :email, class: "input input-bordered w-full" %>
         </div>
         <div class="mb-4">
-          <%= f.label :password, class: "block mb-2" %>
+          <%= f.label :password, class: "block mb-1" %>
           <%= f.password_field :password, class: "input input-bordered w-full" %>
         </div>
         <div class="mb-4">
-          <%= f.label :password_confirmation, class: "block mb-2" %>
+          <%= f.label :password_confirmation, class: "block mb-1" %>
           <%= f.password_field :password_confirmation, class: "input input-bordered w-full" %>
         </div>
         <div class="mx-auto flex justify-center text-center mb-4">

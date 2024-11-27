@@ -18,7 +18,7 @@ ja:
         content: 本文
         tag_name: タグ
         visible_gender: 公開先[性別]
-        visible_oshi: 公開先[記事と同じ推し]
+        visible_oshi: 公開先[同じ推し]
         # エラーメッセージの推し名の日本語化が下記の設定でできる
         oshi_name: 推し名
       profile:
