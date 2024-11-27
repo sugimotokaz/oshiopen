@@ -12,6 +12,7 @@ class Article < ApplicationRecord
 
   enum category: { others: 0, impression: 1, introduction: 2 }
   enum visible_gender: { not_selected: 0, male: 1, female: 2 }
+  enum status: { published: 0, unpublished: 1 }
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :notice, length: { maximum: 100 }
@@ -19,6 +20,7 @@ class Article < ApplicationRecord
   validates :visible_gender, presence: true
   validates :visible_oshi, inclusion: { in: [true, false] }
   validates :content, presence: true
+  validates :status, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title category]

@@ -42,32 +42,33 @@ class ProfilesController < ApplicationController
     @articles = @q.result(distinct: true).includes(:oshi_name, :user).order(created_at: :desc)
   
     if logged_in?
-      # 作成した記事には常にアクセスできるようにする
-      user_created_articles = @articles.where(user_id: current_user.id)
-  
-      # 性別によるフィルタリング
-      if current_user.profile.gender.present?
-        @articles = @articles.where(visible_gender: [0, Profile.genders[current_user.profile.gender]])
+      if current_user == @profile.user
+        # 作成者はすべての記事を表示（statusによるフィルタリングなし）
+        @articles = @articles
       else
-        @articles = @articles.where(visible_gender: 0)
+        # 作者以外には公開中の記事のみ表示
+        @articles = @articles.where(status: :published)
+  
+        # 性別によるフィルタリング
+        if current_user.profile.gender.present?
+          @articles = @articles.where(visible_gender: [0, Profile.genders[current_user.profile.gender]])
+        else
+          @articles = @articles.where(visible_gender: 0)
+        end
+  
+        # 同じ推し名を持つユーザーに対してのみ表示するフィルタリング
+        if current_user.profile.oshi_details.any?
+          oshi_name_ids = current_user.profile.oshi_details.pluck(:oshi_name_id)
+          @articles = @articles.where('visible_oshi = ? OR (visible_oshi = ? AND oshi_name_id IN (?))', false, true, oshi_name_ids)
+        else
+          @articles = @articles.where(visible_oshi: false)
+        end
       end
-  
-      # 同じ推し名を持つユーザーに対してのみ表示するフィルタリング
-      if current_user.profile.oshi_details.any?
-        oshi_name_ids = current_user.profile.oshi_details.pluck(:oshi_name_id)
-        @articles = @articles.where('visible_oshi = ? OR (visible_oshi = ? AND oshi_name_id IN (?))', false, true, oshi_name_ids)
-      else
-        @articles = @articles.where(visible_oshi: false)
-      end
-  
-      # 作成者自身には常に記事を表示
-      @articles = @articles.or(user_created_articles)
-  
     else
       # ログインしていない場合は「選択なし」の記事のみ表示
-      @articles = @articles.where(visible_gender: 0, visible_oshi: false)
+      @articles = @articles.where(status: :published, visible_gender: 0, visible_oshi: false)
     end
-
+  
     @articles = @articles.page(params[:page])
   end
 
@@ -78,11 +79,29 @@ class ProfilesController < ApplicationController
     if user == current_user
       @q = user.favorite_articles.ransack(params[:q])
       @articles = @q.result(distinct: true).includes(:oshi_name, :user).order(created_at: :desc)
+
+      # 公開中の記事のみを取得
+      @articles = @articles.where(status: :published)
+  
+      # 公開条件を適用
+      if current_user.profile.gender.present?
+        @articles = @articles.where(visible_gender: [0, Profile.genders[current_user.profile.gender]])
+      else
+        @articles = @articles.where(visible_gender: 0)
+      end
+  
+      if current_user.profile.oshi_details.any?
+        oshi_name_ids = current_user.profile.oshi_details.pluck(:oshi_name_id)
+        @articles = @articles.where('visible_oshi = ? OR (visible_oshi = ? AND oshi_name_id IN (?))', false, true, oshi_name_ids)
+      else
+        @articles = @articles.where(visible_oshi: false)
+      end
     else
       flash[:danger] = "他のユーザーのお気に入り一覧は閲覧できません"
       redirect_to profile_path(@profile)
+      return
     end
-
+  
     @articles = @articles.page(params[:page])
   end
 
