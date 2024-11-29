@@ -1,17 +1,19 @@
 <%= search_form_for q, url: url do |f| %>
-  <div class="flex mb-4">
-    <%= f.search_field :name_cont, placeholder: "ユーザー名で検索", class: "input input-bordered flex-1 w-full max-auto mr-2" %>
-  </div>
-  <div class="flex mb-4">
+  <%= f.search_field :name_cont, placeholder: "ユーザー名で検索", class: "input input-bordered  w-full mb-1" %>
+  <div class="flex items-center mb-4">
+    <div class="mr-1">
+      <%= f.label :profile_gender, "性別", class: "text-sm font-medium text-gray-700" %>
+    </div>
     <div class="mr-4">
-      <%= f.label :profile_gender, "性別", class: "content-center mr-1" %>
-      <%= f.select :profile_gender_eq, Profile.genders.keys.map.with_index { |k, i| [t("enum.profile.gender.#{k}"), i] }, { include_blank: 'すべて' }, class: "input input-bordered mr-2" %>
+      <%= f.select :profile_gender_eq, Profile.genders.keys.map.with_index { |k, i| [t("enums.profile.gender.#{k}"), i] }, { include_blank: 'すべて' }, class: "input input-bordered" %>
     </div>
-    <div class="mr-2">
-      <%= f.label :profile_birth_year, "誕生年度", class: "content-center mr-1" %>
-      <%= f.select :profile_birth_year_eq, (1900..Time.now.year).to_a.reverse, { include_blank: 'すべて' }, class: "input input-bordered mr-2" %>
+    <div class="mr-1">
+      <%= f.label :profile_birth_year, "誕生年度", class: "text-sm font-medium text-gray-700" %>
     </div>
-    <div class="flex-none ml-2">
+    <div>
+      <%= f.select :profile_birth_year_eq, (1950..Time.now.year).to_a.reverse, { include_blank: 'すべて' }, class: "input input-bordered" %>
+    </div>
+    <div class="flex-none ml-auto">
       <%= f.submit class: 'btn btn-primary' %>
     </div>
   </div>

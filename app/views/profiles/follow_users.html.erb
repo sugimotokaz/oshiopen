@@ -1,19 +1,17 @@
 <div class="container mx-auto px-4">
-  <div class="flex justify-center">
-    <div class="w-full max-w-5xl">
-      <h1 class="text-center text-3xl font-bold mt-10 mb-4"><%= @profile.user.name %>お気に入りユーザー一覧</h1>
+  <div class="flex justify-center mt-8">
+    <div class="w-full max-w-3xl">
+      <h1 class="text-center text-2xl font-bold mb-4"><%= @profile.user.name %>お気に入りユーザー一覧</h1>
 
       <!-- 検索フォーム -->
       <%= render 'user_search_form', q: @q, url: follow_users_profile_path(@profile) %>
 
       <!-- ユーザー一覧 -->
-      <div class="bg-base-200 min-h-3.5 p-2">
-        <% if @following_users.present? %>
-          <%= render partial: "follow_user", collection: @following_users, as: :follow_user %>
-        <% else %>
-          <h1 class="text-center text-xl">お気に入りユーザーを登録していません</h1>
-        <% end %>
-      </div>
+      <% if @following_users.present? %>
+        <%= render partial: "follow_user", collection: @following_users, as: :follow_user %>
+      <% else %>
+        <h1 class="text-center text-lg mt-8">お気に入りユーザーを登録していません</h1>
+      <% end %>
 
       <!-- ページネーション -->
       <%= paginate @following_users %>
