@@ -1,7 +1,12 @@
 <div class="container mx-auto px-8">
   <div class="flex justify-center mt-8">
     <div class="w-full max-w-2xl">
-      <h1 class="text-2xl font-bold mb-6">記事編集</h1>
+
+      <div class="mx-auto flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold">記事編集</h1>
+        <%= link_to "削除", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline btn-accent' %>
+      </div>
+
       <%= form_with model: @article, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 

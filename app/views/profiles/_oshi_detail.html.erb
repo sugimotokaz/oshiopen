@@ -1,34 +1,48 @@
-<div class="m-4">
-  <div id="oshi_detail-id-<%= oshi_detail.id %>">
-    <details class="collapse bg-base-300">
-      <summary class="collapse-title text-xl font-medium">
-        <div class="hero-content flex-col lg:flex-row">
-          <%= image_tag oshi_detail.oshi_image.url, class: "w-24 rounded-full" %>
-          <%= oshi_detail.oshi_name.name %>
+<div id="oshi_detail-id-<%= oshi_detail.id %>">
+  <details class="collapse bg-base-300 my-2">
+
+    <summary class="collapse-title w-full m-1">
+      <div class="flex items-center my-1 mx-1">
+        <div class="avatar mr-2">
+          <div class="w-20 rounded-full">
+            <%= image_tag oshi_detail.oshi_image.url %>
+          </div>
         </div>
-      </summary>
-      <div class="collapse-content">
-        <div class="m-1">
-          <p><strong>好きな理由</strong></p>
-          <p><%= oshi_detail.reason_for_favorite %></p>
-        </div>
-        <div class="m-1">
-          <p><strong>好きになったキッカケ</strong></p>
-          <p><%= oshi_detail.trigger_for_favorite %></p>
-        </div>
-        <div class="m-1">
-          <p><strong>推し活履歴</strong></p>
-          <p><%= oshi_detail.activity_history %></p>
-        </div>
-        <% if current_user&.own?(oshi_detail) %>
-          <%= link_to edit_oshi_detail_path(oshi_detail) do %>
-            <i class="fa-solid fa-pen"></i>
+        <h1 class="text-base font-bold"><%= oshi_detail.oshi_name.name %></h1>
+        <div class='ms-auto mr-2'>
+          <% if current_user&.own?(oshi_detail) %>
+            <%= link_to edit_oshi_detail_path(oshi_detail) do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
           <% end %>
-          <%= link_to oshi_detail_path(oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-    </details>
-  </div>
+    </summary>
+
+    <div class="collapse-content my-2 mx-3">
+
+      <div class="mb-4">
+        <h1 class="font-bold">好きな理由</h1>
+        <div class="bg-base-100 rounded-lg">
+          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.reason_for_favorite) %></h1>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h1 class="font-bold">好きになったキッカケ</h1>
+        <div class="bg-base-100 rounded-lg">
+          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.trigger_for_favorite) %></h1>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h1 class="font-bold">推し活履歴</h1>
+        <div class="bg-base-100 rounded-lg">
+          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.activity_history) %></h1>
+        </div>
+      </div>
+      
+    </div>
+  </details>
 </div>
+
