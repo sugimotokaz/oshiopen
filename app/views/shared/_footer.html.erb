@@ -1,32 +1,35 @@
 <footer class="footer bg-base-300 fixed bottom-0 flex justify-between w-full">
   <%= link_to profile_path(current_user.profile), class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
     <i class="fa-solid fa-house"></i>
-    <p>マイページ</p>
+    <p class="text-[0.6rem]">マイページ</p>
   <% end %>
 
   <%= link_to articles_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
     <i class="fa-solid fa-list"></i>
-    <p>記事一覧</p>
+    <p class="text-[0.6rem]">記事一覧</p>
   <% end %>
 
-  <%= link_to rooms_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
-    <i class="fa-solid fa-comment"></i>
-    <p>チャットルーム一覧</p>
+  <%= link_to new_article_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
+    <i class="fa-solid fa-pen-to-square"></i>
+    <p class="text-[0.6rem]">記事作成</p>
   <% end %>
 
   <%= link_to notifications_path, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
     <% if unchecked_notifications.any? %>
-      <i class="fa-solid fa-bell"></i>
-      <p>コメント通知</p>
+      <div class="indicator">
+        <span class="indicator-item badge badge-secondary bg-orange-500 text-xs p-1 h-1 w-1"></span>
+        <i class="fa-solid fa-bell"></i>
+      </div>
+      <p class="text-[0.6rem]">コメント通知</p>
     <% else %>
-      <i class="fa-solid fa-bell-slash"></i>
-      <p>コメント通知</p>
+      <i class="fa-solid fa-bell"></i>
+      <p class="text-[0.6rem]">コメント通知</p>
     <% end %>
   <% end %>
 
   <%= link_to logout_path, data: { turbo_method: :delete }, class: "flex flex-col items-center hover:bg-gray-300 flex-1 py-3" do %>
     <i class="fa-sharp-duotone fa-solid fa-right-from-bracket"></i>
-    <p>ログアウト</p>
+    <p class="text-[0.6rem]">ログアウト</p>
   <% end %>
 
 </footer>

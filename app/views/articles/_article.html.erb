@@ -30,6 +30,22 @@
         <% end %>
         
 
+        <div class="flex items-start justify-between my-2">
+          <!-- 記事のテキスト -->
+          <h1 class="text-sm my-0 flex-grow">
+            <%= truncate(strip_tags(article.content.body.to_s), length: 64, separator: '...') %>
+          </h1>
+
+          <!-- 1枚目の画像を右側に配置 -->
+          <% first_image = article.content.body.attachments.detect(&:image?) %>
+          <% if first_image %>
+            <div class="my-0 ml-4 flex-shrink-0">
+              <%= image_tag first_image.variant(resize_to_limit: [70, 70]).processed, alt: "記事のサムネイル", class: "rounded" %>
+            </div>
+          <% end %>
+        </div>
+
+
         <div class="flex items-center">
           <div class="avatar mr-2">
             <div class="w-8 rounded-full">
