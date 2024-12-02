@@ -3,14 +3,14 @@
     <div class="w-full max-w-3xl">
       <h1 class="text-center text-2xl font-bold mb-4">コメント通知</h1>
     
-      <div class="bg-base-200 min-h-3.5 p-2">
+      
         <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
         <% if @notifications.present? %>
           <%= render partial: 'notification', collection: notifications %>
         <% else %>
           <h1 class="text-center text-lg">通知まだありません</h1>
         <% end %>
-      </div>
+      
 
     </div>
   </div>
