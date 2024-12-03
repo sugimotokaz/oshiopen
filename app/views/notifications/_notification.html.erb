@@ -7,7 +7,7 @@
         <div class="flex items-center">
           <div class="avatar mr-2">
             <div class="w-10 rounded-full">
-              <%= image_tag current_user.profile.profile_image.url %>
+              <%= image_tag notification.visitor.profile.profile_image.url %>
             </div>
           </div>
           <div class="flex flex-col">
@@ -23,7 +23,7 @@
 
         <div class="items-center ml-auto">
           <%= link_to notification_path(notification), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-            <i class="fa-solid fa-trash mr-2"></i>
+            <i class="fa-solid fa-trash"></i>
           <% end %>
           <%# 未読の場合は丸を表示 %>
           <% if notification.checked == false %>
