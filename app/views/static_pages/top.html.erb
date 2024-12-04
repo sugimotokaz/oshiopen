@@ -1,13 +1,52 @@
-<div class="container mx-auto px-4 mt-4 mb-36">
-  <div class="flex justify-center">
-    <div class="w-full max-w-5xl">
-      <div class="bg-base-200 min-h-3.5 p-2">
-        <p>
-          推し仲間を見つけたい！でも発信することに恥ずかしさがある。<br>
-          そんな人が推し仲間を探すハードルを下げる場を作りました！<br>
-          「推しOPEN」では、同じ性別の人や推しが同じ人にだけ発信できます！<br>
-        </p>
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mt-10">
+    <div class="w-full max-w-3xl">
+      <div class="bg-base-200 min-h-20 p-2 mb-8">
+        <div class="text-sm lg:text-xl text-center my-2">
+          <h1 class="text-2xl lg:text-3xl font-bold mb-2">推しOPEN</h1>
+          <p class>推しについて発信したい！推し仲間を探したい！</br>
+            でも、人の目に触れることに躊躇している・・・・。</br>
+            そんな人はいませんか？　私はそうでした!</br>
+            そんな私の思いから作成された「推しOPEN」</br>
+            ここならそんな人でも発信ができます！</p>
+        </div>
       </div>
+
+      <div class="text-center mb-14">
+        <%= link_to "記事一覧", articles_path, class: 'btn btn-neutral mb-2' %>
+        <p class="text-lg">投稿された記事を見てみましょう！</p>
+      </div>
+
+      <h1 class="text-center text-2xl font-bold mb-2">どんなアプリ？</h1>
+      <h2 class="text-center text-lg font-bold mb-2">まずは自分のプロフィールを公開しよう！</h2>
+
+      <div class="text-center mb-14 lg:grid grid-cols-2 gap-2">
+        <div class="bg-base-200 min-h-20 mb-2 lg:mb-0">
+          <h1 class="font-bold text-lg pt-2 lg:pt-4">プロフィールの登録</h1>
+          <p>性別や誕生年度、自己紹介の登録</p>
+        </div>
+        <div class="bg-base-200 min-h-20">
+          <h1 class="font-bold text-lg pt-2 lg:pt-4">推しの登録</h1>
+          <p>推しを好きな理由、推し活履歴の登録</p>
+        </div>
+      </div>
+
+      <h2 class="text-center text-lg font-bold mb-2">記事を作成して推しについて発信しよう！</h2>
+      <div class="max-w-xl mx-auto text-center bg-base-200 min-h-20 mb-8">
+        <h1 class="font-bold text-lg pt-2">記事の作成</h1>
+        <p>同性や同じ推しを推しているユーザーだけに</br>
+          公開することが可能！</p>
+      </div>
+
+      <div class="text-center">
+        <p class="text-lg mb-2">ログインしてプロフィール作成や記事を</br>
+                            作成してみよう！</p>
+        <%= link_to "ログイン", login_path, class: 'btn btn-neutral' %>
+        
+
+      </div>
+      
+      
     </div>
   </div>
 </div>
