@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
+  helper_method :prepare_meta_tags
 
   def index
 
@@ -150,6 +151,8 @@ class ArticlesController < ApplicationController
       end
     end
 
+    prepare_meta_tags(@article)
+
     @comment = Comment.new
     @comments = @article.comments.includes(user: :profile).order(created_at: :desc)
   end
@@ -207,5 +210,24 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :notice, :category, :visible_gender, :visible_oshi, :status, :content)
+  end
+
+  def prepare_meta_tags(article)
+    # このimage_urlにMiniMagickで設定したOGPの生成した合成画像を代入する
+    image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(article.title)}"
+    set_meta_tags og: {
+                    site_name: '推しOPEN',
+                    title: article.title,
+                    description: '推しに関する発信をしやすくなるアプリ',
+                    type: 'website',
+                    url: request.original_url,
+                    image: image_url,
+                    locale: 'ja-JP'
+                  },
+                  twitter: {
+                    card: 'summary_large_image',
+                    site: '@https://x.com/sugimoto18173',
+                    image: image_url
+                  }
   end
 end
