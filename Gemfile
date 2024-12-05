@@ -93,6 +93,8 @@ gem 'rails-i18n', '~> 7.0.0'
 
 gem 'enum_help'
 
+gem 'meta-tags', require: 'meta_tags'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
