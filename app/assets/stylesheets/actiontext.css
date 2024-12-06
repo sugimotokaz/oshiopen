@@ -62,8 +62,8 @@ trix-editor {
 }
 
 .trix-content img {
-  max-width: 70%; /* 親要素の幅に収まる */
-  min-height: 70%;    /* アスペクト比を保つ */
+  max-width: 50%; /* 親要素の幅に収まる */
+  min-height: 50%;    /* アスペクト比を保つ */
   display: block;
   margin: 0 auto; /* 左右の余白を自動で設定 */
 }
