@@ -8,39 +8,39 @@
         <% end %>
 
         <div class="mx-auto flex items-center justify-between">
-          <h1 class="text-sm"><%= article.oshi_name.name %></h1>
+          <h1 class="text-base lg:text-lg"><%= article.oshi_name.name %></h1>
           <% if current_user&.own1?(article) %>
-            <div class='ms-auto mr-2'>
+            <div class='ms-auto text-lg lg:text-xl mr-2'>
               <%= link_to edit_article_path(article) do %>
                 <i class="fa-solid fa-pen"></i>
               <% end %>
             </div>
           <% elsif logged_in? %>
-            <div class='mr-2'>
+            <div class='text-lg lg:text-xl mr-2'>
               <%= render 'shared/favorite_buttons', { article: article } %>
             </div>
           <% end %>
         </div>
 
-        <h1 class="card-title text-base">
+        <h1 class="card-title text-lg lg:text-xl">
           <%= link_to article.title, article_path(article) %>
         </h1>
         <% if article.notice.present? %>
-          <h3 class="text-pink-500 text-xs"><%= article.notice %></h3>
+          <h3 class="text-pink-500 text-sm lg:text-base"><%= article.notice %></h3>
         <% end %>
         
 
-        <div class="flex items-start justify-between my-2">
+        <div class="flex items-start justify-between my-1">
           <!-- 記事のテキスト -->
-          <h1 class="text-sm my-0 flex-grow">
-            <%= truncate(strip_tags(article.content.body.to_s), length: 64, separator: '...') %>
+          <h1 class="text-sm lg:text-base my-0 flex-grow">
+            <%= truncate(strip_tags(article.content.body.to_s), length: 68, separator: '...') %>
           </h1>
 
           <!-- 1枚目の画像を右側に配置 -->
           <% first_image = article.content.body.attachments.detect(&:image?) %>
           <% if first_image %>
             <div class="my-0 ml-4 flex-shrink-0">
-              <%= image_tag first_image.variant(resize_to_limit: [70, 70]).processed, alt: "記事のサムネイル", class: "rounded" %>
+              <%= image_tag first_image.variant(resize_to_limit: [80, 80]).processed, alt: "記事のサムネイル", class: "rounded" %>
             </div>
           <% end %>
         </div>
@@ -48,14 +48,14 @@
 
         <div class="flex items-center">
           <div class="avatar mr-2">
-            <div class="w-8 rounded-full">
+            <div class="w-10 rounded-full">
               <%= image_tag article.user.profile.profile_image.url %>
             </div>
           </div>
-          <h1 class="text-xs"><%= link_to article.user.name, profile_path(article.user.profile) %></h1>
+          <h1 class="text-sm lg:text-base"><%= link_to article.user.name, profile_path(article.user.profile) %></h1>
           <div class="ms-auto">
-            <h1 class="text-xs">カテゴリ：<%= article.category_i18n %></h1>
-            <h1 class="text-xs"><%= l article.created_at, format: :custom %></h1>
+            <h1 class="text-xs lg:text-sm">カテゴリ：<%= article.category_i18n %></h1>
+            <h1 class="text-xs lg:text-sm"><%= l article.created_at, format: :custom %></h1>
           </div>
         </div>
         

@@ -1,28 +1,28 @@
 <div class="container mx-auto px-4">
   <div class="flex justify-center mt-8">
     <div class="w-full max-w-3xl">
-      <div class="bg-base-200 min-h-3.5 p-2">
+      <div class="bg-base-200 min-h-3.5 p-3">
 
         <% if @article.unpublished? %>
           <h1 class="text-base text-pink-500">非公開</h1>
         <% end %>
 
         <div class="mx-auto flex items-center justify-betwee">
-          <h1 class="text-base mb-1"><%= @article.oshi_name.name %></h1>
+          <h1 class="text-base lg:text-lg mb-1"><%= @article.oshi_name.name %></h1>
 
           <div class="flex items-center ms-auto">
             <% if current_user&.own1?(@article) %>
-              <div class='mr-4'>
+              <div class='text-xl lg:text-2xl mr-5'>
                 <%= link_to edit_article_path(@article) do %>
                   <i class="fa-solid fa-pen"></i>
                 <% end %>
               </div>
             <% elsif logged_in? %>
-              <div class='mr-4'>
+              <div class='text-xl lg:text-2xl mr-5'>
                 <%= render 'shared/favorite_buttons', { article: @article } %>
               </div>
             <% end %>
-            <div class="text-gray-600">
+            <div class="text-gray-600 text-xl lg:text-2xl">
               <% if @article.visible_gender == "not_selected" && !@article.visible_oshi %>
                 <% prepare_meta_tags @article %> <!-- 設定したメタタグをリダイレクトされる前に呼び出す-->
                 <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(article_url(@article))}" %> <!-- post_urlにしないと完全なURLにならない -->
@@ -35,24 +35,24 @@
           </div>
         </div>
 
-        <h1 class="text-xl font-bold mb-1"><%= @article.title %></h1>
-        <h1 class="text-sm text-pink-500 mb-1"><%= @article.notice %></h1>
+        <h1 class="text-xl lg:text-2xl font-bold mb-1"><%= @article.title %></h1>
+        <h1 class="text-sm lg:text-base text-pink-500 mb-1"><%= @article.notice %></h1>
 
-        <div class="flex items-center mb-1">
+        <div class="flex items-center mb-2">
           <div class="avatar mr-2">
-            <div class="w-8 rounded-full">
+            <div class="w-10 rounded-full">
               <%= image_tag @article.user.profile.profile_image.url %>
             </div>
           </div>
-          <h1 class="text-base mb-1"><%= link_to @article.user.name, profile_path(@article.user.profile) %></h1>
+          <h1 class="text-base lg:text-lg mb-1"><%= link_to @article.user.name, profile_path(@article.user.profile) %></h1>
         </div>
 
         <div class="flex items-center mb-1">
-          <h1 class="text-sm">カテゴリ：<%= @article.category_i18n %></h1>
-          <h1 class="text-sm ms-auto"><%= l @article.created_at, format: :custom %></h1>
+          <h1 class="text-sm lg:text-base">カテゴリ：<%= @article.category_i18n %></h1>
+          <h1 class="text-sm lg:text-base ms-auto"><%= l @article.created_at, format: :custom %></h1>
         </div>
 
-        <h1 class="bg-white text-sm p-2 mb-2"><%= @article.content %></h1>
+        <h1 class="bg-white text-sm lg:text-lg p-2 mb-2"><%= @article.content %></h1>
 
         <%= render 'articles/tag', { article: @article } %>
 

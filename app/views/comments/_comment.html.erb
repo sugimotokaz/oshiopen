@@ -8,27 +8,31 @@
               <div class="card bg-base-100 max-w-3xl shadow-xl">
                 <div class="py-3 px-2">
 
-                  <div class="flex items-center mb-1">
+                  <div class="flex items-center mb-2">
                     <div class="avatar mr-2">
-                      <div class="w-8 rounded-full">
+                      <div class="w-10 rounded-full">
                         <%= image_tag comment.user.profile.profile_image.url %>
                       </div>
                     </div>
-                    <h1 class="text-sm"><%= comment.user.name %></h1>
+                    <h1 class="text-base lg:text-lg"><%= comment.user.name %></h1>
                     <div class="ms-auto">
-                      <h1 class="text-xs"><%= l comment.created_at, format: :custom %></h1>
+                      <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
                     </div>
                   </div>
 
-                  <h1 class="text-sm"><%= comment.body %></h1>
+                  <h1 class="text-sm lg:text-base"><%= comment.body %></h1>
                   <div class="flex justify-end">
                     <% if current_user&.own1?(comment) %>
-                      <%= link_to edit_comment_path(comment), data: { turbo_stream: true } do %>
-                        <i class="fa-solid fa-pen mr-4"></i>
-                      <% end %>
-                      <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-                        <i class="fa-solid fa-trash"></i>
-                      <% end %>
+                      <div class='text-lg lg:text-xl mr-4'>
+                        <%= link_to edit_comment_path(comment), data: { turbo_stream: true } do %>
+                          <i class="fa-solid fa-pen"></i>
+                        <% end %>
+                      </div>
+                      <div class='text-lg lg:text-xl'>
+                        <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+                          <i class="fa-solid fa-trash"></i>
+                        <% end %>
+                      </div>
                     <% end %>
                   </div>
                 </div>
