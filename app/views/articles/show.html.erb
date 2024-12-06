@@ -7,28 +7,31 @@
           <h1 class="text-base text-pink-500">非公開</h1>
         <% end %>
 
-        <div class="mx-auto flex items-center">
+        <div class="mx-auto flex items-center justify-betwee">
           <h1 class="text-base mb-1"><%= @article.oshi_name.name %></h1>
-          <% if current_user&.own1?(@article) %>
-            <div class='ms-auto mr-4'>
-              <%= link_to edit_article_path(@article) do %>
-                <i class="fa-solid fa-pen"></i>
-              <% end %>
-            </div>
-          <% elsif logged_in? %>
-            <div class='ms-auto mr-4'>
-              <%= render 'shared/favorite_buttons', { article: @article } %>
-            </div>
-          <% end %>
-          <div class="text-gray-600">
-            <% if @article.visible_gender == "not_selected" && !@article.visible_oshi %>
-              <% prepare_meta_tags @article %> <!-- 設定したメタタグをリダイレクトされる前に呼び出す-->
-              <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(article_url(@article))}" %> <!-- post_urlにしないと完全なURLにならない -->
-              <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
-                <!-- Xシェアボタンはfontawesome.comから使用しています -->
-                <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
-              <% end %>
+
+          <div class="flex items-center ms-auto">
+            <% if current_user&.own1?(@article) %>
+              <div class='mr-4'>
+                <%= link_to edit_article_path(@article) do %>
+                  <i class="fa-solid fa-pen"></i>
+                <% end %>
+              </div>
+            <% elsif logged_in? %>
+              <div class='mr-4'>
+                <%= render 'shared/favorite_buttons', { article: @article } %>
+              </div>
             <% end %>
+            <div class="text-gray-600">
+              <% if @article.visible_gender == "not_selected" && !@article.visible_oshi %>
+                <% prepare_meta_tags @article %> <!-- 設定したメタタグをリダイレクトされる前に呼び出す-->
+                <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(article_url(@article))}" %> <!-- post_urlにしないと完全なURLにならない -->
+                <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+                  <!-- Xシェアボタンはfontawesome.comから使用しています -->
+                  <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
 
