@@ -4,29 +4,31 @@
       <div class="py-3 px-2">
 
         <div class="flex items-center">
-          <div class="avatar mr-1">
-            <div class="w-9 rounded-full">
+          <div class="avatar mx-2">
+            <div class="w-12 rounded-full">
               <%= image_tag follow_user.profile.profile_image.url, class: "w-24 rounded-full" %>
             </div>
           </div>
-          <h1 class="text-sm font-bold"><%= link_to follow_user.name, profile_path(follow_user.profile) %></h1>
-          <div class='ms-auto mr-2'>
+          <h1 class="text-lg lg:text-xl font-bold"><%= link_to follow_user.name, profile_path(follow_user.profile) %></h1>
+          <div class='ms-auto text-lg lg:text-xl mr-2'>
             <%= render 'shared/follow_buttons', { user: follow_user } %>
           </div>
         </div>
 
-        <div class="mt-1 mx-2">
+        <div class="mt-2 mx-2">
           <div class="flex">
-            <p class="text-sm">性別：</p>
-            <p class="text-sm"><%= follow_user.profile.gender_i18n %></p>
+            <p class="text-base lg:text-lg">性別：</p>
+            <p class="text-base lg:text-lg"><%= follow_user.profile.gender_i18n %></p>
           </div>
           <div class="flex">
-            <p class="text-sm">誕生年度：</p>
-            <p class="text-sm"><%= follow_user.profile.birth_year || '選択なし' %></p>
+            <p class="text-base lg:text-lg">誕生年度：</p>
+            <p class="text-base lg:text-lg"><%= follow_user.profile.birth_year || '選択なし' %></p>
           </div>
           <div>
-            <p class="text-sm">自己紹介：</p>
-            <p class="text-sm"><%= follow_user.profile.self_introduction.truncate(45, omission: '...') %></p>
+            <p class="text-base lg:text-lg">自己紹介：</p>
+            <% if follow_user.profile.self_introduction.present? %>
+              <p class="text-base lg:text-lg"><%= follow_user.profile.self_introduction.truncate(45, omission: '...') %></p>
+            <% end %>
           </div>
           
         </div>

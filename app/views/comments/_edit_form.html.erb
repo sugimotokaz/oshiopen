@@ -10,13 +10,13 @@
 
                   <div class="flex items-center mb-1">
                     <div class="avatar mr-2">
-                      <div class="w-8 rounded-full">
-                        <%= image_tag comment.article.user.profile.profile_image.url %>
+                      <div class="w-10 rounded-full">
+                        <%= image_tag comment.user.profile.profile_image.url %>
                       </div>
                     </div>
-                    <h1 class="text-base"><%= comment.user.name %></h1>
+                    <h1 class="text-sm lg:text-base"><%= comment.user.name %></h1>
                     <div class="ms-auto">
-                      <h1 class="text-xs"><%= l comment.created_at, format: :custom %></h1>
+                      <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
                     </div>
                   </div>
 
