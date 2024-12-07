@@ -9,8 +9,8 @@
               <%= image_tag @profile.profile_image.url %>
             </div>
           </div>
-          <h1 class="text-2xl font-bold"><%= @profile.user.name %></h1>
-          <div class='ms-auto mr-2'>
+          <h1 class="text-xl lg:text-2xl font-bold"><%= @profile.user.name %></h1>
+          <div class='ms-auto text-lg lg:text-xl mr-2'>
             <% if current_user == @profile.user %>
               <%= link_to edit_profile_path do %>
                 <i class="fa-solid fa-pen"></i>
@@ -23,17 +23,17 @@
 
         <div class="my-2 mx-3">
           <div class="flex">
-            <h1>性別：</h1>
-            <h1><%= @profile.gender_i18n %></h1>
+            <h1 class="text-base lg:text-lg">性別：</h1>
+            <h1 class="text-base lg:text-lg"><%= @profile.gender_i18n %></h1>
           </div>
           <div class="flex">
-            <h1>誕生年度：</h1>
-            <h1><%= @profile.birth_year || '選択なし' %></h1>
+            <h1 class="text-base lg:text-lg">誕生年度：</h1>
+            <h1 class="text-base lg:text-lg"><%= @profile.birth_year || '選択なし' %></h1>
           </div>
           <div>
-            <h1>自己紹介</h1>
+            <h1 class="text-base lg:text-lg">自己紹介</h1>
             <div class="bg-base-100 rounded-lg">
-              <h1 class="text-sm p-2"><%= simple_format(@profile.self_introduction) %></h1>
+              <h1 class="text-sm lg:text-base p-2"><%= simple_format(@profile.self_introduction) %></h1>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
   <div class="flex justify-center mt-2">
     <div class="w-full max-w-3xl">
       <div class="bg-base-200 min-h-3.5 p-2">
-        <h1 class="text-lg font-bold"><%= link_to "#{@profile.user.name}記事一覧", my_articles_profile_path(@profile), class: "text-blue-500 hover:underline" %></h1>
+        <h1 class="text-lg lg:text-xl font-bold"><%= link_to "#{@profile.user.name}記事一覧", my_articles_profile_path(@profile), class: "text-blue-500 hover:underline" %></h1>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
       <div class="bg-base-200 min-h-3.5 p-2">
         <% if current_user == @profile.user %>
           <%= link_to new_profile_oshi_detail_path(@profile) do %>
-            <i class="fa-solid fa-plus">推し追加</i>
+            <i class="fa-solid fa-plus text-base lg:text-lg">推し追加</i>
           <% end %>
         <% end %>
         <div>

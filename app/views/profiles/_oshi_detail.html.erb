@@ -8,11 +8,11 @@
             <%= image_tag oshi_detail.oshi_image.url %>
           </div>
         </div>
-        <h1 class="text-base font-bold"><%= oshi_detail.oshi_name.name %></h1>
-        <div class='ms-auto mr-2'>
+        <h1 class="text-base lg:text-xl font-bold"><%= oshi_detail.oshi_name.name %></h1>
+        <div class='ms-auto text-lg lg:text-xl mr-2'>
           <% if current_user&.own?(oshi_detail) %>
             <%= link_to edit_oshi_detail_path(oshi_detail) do %>
-              <i class="fa-solid fa-pen"></i>
+              <i class="fa-solid fa-pen text-base lg:text-lg"></i>
             <% end %>
           <% end %>
         </div>
@@ -22,23 +22,23 @@
     <div class="collapse-content my-2 mx-3">
 
       <div class="mb-4">
-        <h1 class="font-bold">好きな理由</h1>
+        <h1 class="text-base lg:text-lg font-bold">好きな理由</h1>
         <div class="bg-base-100 rounded-lg">
-          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.reason_for_favorite) %></h1>
+          <h1 class="text-sm lg:text-bas p-2"><%= simple_format(oshi_detail.reason_for_favorite) %></h1>
         </div>
       </div>
 
       <div class="mb-4">
-        <h1 class="font-bold">好きになったキッカケ</h1>
+        <h1 class="text-base lg:text-lg font-bold">好きになったキッカケ</h1>
         <div class="bg-base-100 rounded-lg">
-          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.trigger_for_favorite) %></h1>
+          <h1 class="text-sm lg:text-bas p-2"><%= simple_format(oshi_detail.trigger_for_favorite) %></h1>
         </div>
       </div>
 
       <div class="mb-4">
-        <h1 class="font-bold">推し活履歴</h1>
+        <h1 class="text-base lg:text-lg font-bold">推し活履歴</h1>
         <div class="bg-base-100 rounded-lg">
-          <h1 class="text-sm p-2"><%= simple_format(oshi_detail.activity_history) %></h1>
+          <h1 class="text-sm lg:text-bas p-2"><%= simple_format(oshi_detail.activity_history) %></h1>
         </div>
       </div>
       
