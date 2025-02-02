@@ -1,4 +1,6 @@
 # 推しOPEN
+## URL
+https://www.oshiopen.com/
 
 ## ■ サービス概要
 ファンが応援している人(推し)の活動に関して感想を記事にしたり、紹介記事を作成、閲覧できるサービス。また感想記事などは、公開先を限定（性別や同じ人（グループ）を応援している人だけ）して、ファン以外の人の目を気にせず交流できます。
@@ -15,14 +17,33 @@
 - 推しを布教したい人、新しい推しを探したい人
   - ファンは複数の人、グループを推す人が多く、紹介記事が並ぶ一覧表から新たな推しを探すことができるアプリにしたいから
 
-  ## ■ サービスの利用イメージ
-- ログイン前でも、記事の一覧を閲覧可能。他ユーザーのプロフィールを確認できます。
-　※ログイン前では、ユーザー情報の登録がないため、限定公開を設定している投稿は閲覧できません。
-- ログイン後に、「性別（任意）」「誕生日（任意）」「推し名（複数可）」を設定。
-  - これらが投稿時の限定公開の条件の項目となり、目に触れるユーザーを限定できるため、投稿（発信）のハードルを下げられます。
-  - プロフィールの設定は他のユーザーも確認でき、自分と趣向が似ている人を探すことができます。
-- ログイン後は、「投稿」「コメント」「お気に入り（投稿記事、ユーザー）」が行えます。
-  - 同じ推しを登録している人のみに公開が可能なため、投稿のハードルを下げられます。
+## ■ サービスの利用イメージ
+
+| 投稿一覧 | プロフィール一覧 |
+| ---- | ---- |
+| <a href="https://gyazo.com/73807699c457671ab2429bf4925cd88f"><img src="https://i.gyazo.com/73807699c457671ab2429bf4925cd88f.png" alt="Image from Gyazo" width="600"/></a> | <a href="https://gyazo.com/ca23bab1e94d8c417fbc931a6132bfc1"><img src="https://i.gyazo.com/ca23bab1e94d8c417fbc931a6132bfc1.png" alt="Image from Gyazo" width="600"/></a> |
+| ログイン前でも、記事の一覧を閲覧可能。ログイン前では限定公開を設定している投稿の閲覧はできません。| プロフィールの他に自分が推している人を登録することができます。他ユーザーのプロフィールも確認できます（ログイン前でも可）。 |
+
+| 新規ユーザー登録 | ログイン |
+| ---- | ---- |
+| <a href="https://gyazo.com/a67974e74c3e1870572af6045af320d7"><img src="https://i.gyazo.com/a67974e74c3e1870572af6045af320d7.png" alt="Image from Gyazo" width="600"/></a> | <a href="https://gyazo.com/6b66f484fa0925d39f03281e5ebfcd48"><img src="https://i.gyazo.com/6b66f484fa0925d39f03281e5ebfcd48.png" alt="Image from Gyazo" width="600"/></a> | 
+
+| プロフィール作成 | 推し登録 |
+| ---- | ---- |
+| <a href="https://gyazo.com/04a05c055dc22480f4ca07d4eea032db"><img src="https://i.gyazo.com/04a05c055dc22480f4ca07d4eea032db.png" alt="Image from Gyazo" width="600"/></a> | <a href="https://gyazo.com/1653abcf019990c2bfe77dadbf3b8e37"><img src="https://i.gyazo.com/1653abcf019990c2bfe77dadbf3b8e37.png" alt="Image from Gyazo" width="600"/></a> |
+| 新規登録をしたら、プロフィールを編集しましょう！ | 推している人と好きな理由、推し活履歴などを登録しましょう！ |
+| プロフィールの情報と推しの情報が、記事の限定公開機能に必要になってきます |
+
+| 記事新規作成 | 自分の記事一覧 |
+| ---- | ---- |
+| <a href="https://gyazo.com/fef67de1b61d59220e2cfddbcfac7166"><img src="https://i.gyazo.com/fef67de1b61d59220e2cfddbcfac7166.png" alt="Image from Gyazo" width="600"/></a> | <a href="https://gyazo.com/af0f52d1843e71455428c9a21ac096ec"><img src="https://i.gyazo.com/af0f52d1843e71455428c9a21ac096ec.png" alt="Image from Gyazo" width="600"/></a> |
+| 記事作成時に公開先を「性別」と「投稿と同じ推し」で選択することができ、プロフィールに「女性」と設定している人にだけや、同じ推しを登録している人にだけ記事一覧に表示させることができます。 記事は「非公開で保存」することができ、後で編集してから公開することができます。| 自分の記事一覧を表示します。ここに記事作成時に「非公開で保存する」を選択した記事が確認することができます。また一度公開している記事も非公開にすることができます。 |
+
+| お気に入り記事一覧 | お気に入りユーザー一覧 |
+| ---- | ---- |
+| <a href="https://gyazo.com/34852cdb06837ca2c8f69741bc8b2f13"><img src="https://i.gyazo.com/34852cdb06837ca2c8f69741bc8b2f13.png" alt="Image from Gyazo" width="600"/></a> | <a href="https://gyazo.com/4ebb9f345ae8b8405a49fec4cd955b36"><img src="https://i.gyazo.com/4ebb9f345ae8b8405a49fec4cd955b36.png" alt="Image from Gyazo" width="600"/></a> |
+| ログインするとお気に入りができ、その一覧を見ることができます。 | お気に入りのユーザーの一覧が見れます。 |
+
 
 ## ■ サービスの差別化ポイント・推しポイント
 - プロフィールに「推し名」「好きな理由」「好きになったキッカケ」「推し活履歴」の項目を作り、より詳細にそのユーザーの情報が分かるようにするなど推し活に特化することで、SNSやブログとの差別化しています。
@@ -48,4 +69,4 @@
 Figma:https://www.figma.com/design/RZp5Xg12TJToidpDQI7b18/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?t=hX2kP89U4UXnzHMe-0
 
 ## ER図
-https://i.gyazo.com/db156fa8f1a29b5c80375ecbcc0014aa.png
+<a href="https://gyazo.com/32a1118846339b30020e844248e4f22b"><img src="https://i.gyazo.com/32a1118846339b30020e844248e4f22b.png" alt="Image from Gyazo" width="600"/></a>
