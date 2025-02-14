@@ -1,0 +1,160 @@
+<%= form_with model: @article, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="mb-4">
+    <div class="flex items-center mb-1">
+      <%= f.label :oshi_name_name, class: "block mr-1" %>
+      <p class="text-red-500">(必須)</p>
+
+      <!-- 推し名に関する説明ボタン -->
+      <label for="oshiname_modal" class="ml-4 hover:bg-gray-300"><i class="fa-regular fa-circle-question"></i></label>
+      <!-- Put this part before </body> tag -->
+      <input type="checkbox" id="oshiname_modal" class="modal-toggle" />
+      <div class="modal" role="dialog">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">推し名とは？</h3>
+          <p class="py-4">
+            誰に関する記事なのかを設定しましょう！
+            そして、作成画面の下部にある「公開先[投稿と同じ推し]」に
+            チェックを入れると、プロフィールにその推しを登録しているユーザーだけが
+            閲覧できるように設定できます。
+          </p>
+        </div>
+        <label class="modal-backdrop" for="oshiname_modal">Close</label>
+      </div>
+
+    </div>
+    <%= f.text_field :oshi_name_name, value: @article.oshi_name&.name, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <div class="flex items-center mb-1">
+      <%= f.label :title, class: "block mr-1" %>
+      <p class="text-red-500">(必須)</p>
+    </div>
+    <%= f.text_field :title, class: "input input-bordered w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :notice, class: "block mb-1" %>
+    <%= f.text_area :notice, class: "textarea textarea-bordered h-24 w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <div class="flex items-center mb-2">
+      <%= f.label :content, class: "block mr-1" %>
+      <p class="text-red-500">(必須)</p>
+
+      <!-- エディタの使い方に関するモーダル -->
+      <label for="actiontext_modal" class="ml-4 hover:bg-gray-300"><i class="fa-regular fa-circle-question"></i></label>
+      <!-- Put this part before </body> tag -->
+      <input type="checkbox" id="actiontext_modal" class="modal-toggle" />
+      <div class="modal" role="dialog">
+        <div class="modal-box max-h-[500px] overflow-y-auto">
+          <h3 class="text-lg font-bold">エディタの使い方</h3>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-1">・太文字</h1>
+          <img src="https://i.gyazo.com/54dc03a70ff3ce7b5cf6bb51ec8dcb52.gif" alt="Image from Gyazo" width="364"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・斜め文字</h>
+          <img src="https://i.gyazo.com/323677ad7e48c69fb8795c16a346e53b.gif" alt="Image from Gyazo" width="368"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・真ん中線</h>
+          <img src="https://i.gyazo.com/4d072901eb1c5525766c5c900d9f50b3.gif" alt="Image from Gyazo" width="368"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・リンク</h>
+          <img src="https://i.gyazo.com/31d22d5bd79c606502768e2085f34440.gif" alt="Image from Gyazo" width="364"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・黒点</h>
+          <img src="https://i.gyazo.com/75b65211b15507c821654ec398e55209.gif" alt="Image from Gyazo" width="362"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・番号付け</h>
+          <img src="https://i.gyazo.com/17cf10103f41584abf4057bcf445246a.gif" alt="Image from Gyazo" width="364"/></a>
+          <div class="border-b-4 border-gray-300 my-6"></div>
+
+          <h1 class="font-bold mt-6">・画像添付</h>
+          <img src="https://i.gyazo.com/c5c8f3bae867658aa8691193e4eb8104.gif" alt="Image from Gyazo" width="372"/></a>
+
+        </div>
+        <label class="modal-backdrop" for="actiontext_modal">Close</label>
+      </div>
+
+    </div>
+    <!-- リッチテキストエディタのデザインはactiontext.cssに書いている -->
+    <%= f.rich_text_area :content %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :category, class: "block mb-1" %>
+    <%= f.select :category, Article.categories_i18n.keys.map { |w| [I18n.t("enums.article.category.#{w}"), w] }, {}, class: "select select-bordered max-w-base" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :tag_name, class: "block mb-1" %>
+    <%= f.text_area :tag_name, placeholder: "、で区切って入力してください", value: params[:article] ? params[:article][:tag_name] : @article.tags.map(&:name).join('、'), class: "textarea textarea-bordered h-16 w-full" %>
+  </div>
+
+  <div class="flex items-stretch mb-8">
+
+    <div class="mr-12">
+      <div class="flex items-center">
+        <%= f.label :visible_gender, class: "block mb-2" %>
+
+        <!-- 推し名に関する説明ボタン -->
+        <label for="gender_modal" class="ml-2 mb-2 hover:bg-gray-300"><i class="fa-regular fa-circle-question"></i></label>
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="gender_modal" class="modal-toggle" />
+        <div class="modal" role="dialog">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">「公開先[性別]」とは？</h3>
+            <p class="py-4">
+              設定した性別を、プロフィールに設定しているユーザーだけが
+              閲覧できるように設定できます。
+            </p>
+          </div>
+          <label class="modal-backdrop" for="gender_modal">Close</label>
+        </div>
+      </div>
+
+      <%= f.select :visible_gender, Article.visible_genders_i18n.keys.map { |w| [I18n.t("enums.article.visible_gender.#{w}"), w] }, {}, class: "select select-bordered max-w-base" %>
+    </div>
+
+    <div>
+      <div class="flex items-center">
+        <%= f.label :visible_oshi, class: "block mb-3" %>
+
+        <!-- 推し名に関する説明ボタン -->
+        <label for="oshiname_check_modal" class="ml-2 mb-3 hover:bg-gray-300"><i class="fa-regular fa-circle-question"></i></label>
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="oshiname_check_modal" class="modal-toggle" />
+        <div class="modal" role="dialog">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">「公開先[同じ推し]」とは？</h3>
+            <p class="py-4">
+              チェックを入れると、この記事の「推し名」と同じ「推し名」を
+              プロフィールに設定しているユーザーだけが閲覧できるように設定できます。
+            </p>
+          </div>
+          <label class="modal-backdrop" for="oshiname_check_modal">Close</label>
+        </div>
+      </div>
+      <div class="flex justify-center items-center">
+        <%= f.check_box :visible_oshi, { checked: @article.visible_oshi, class: "checkbox checkbox-primary" }, true, false %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mx-auto flex justify-center text-center mb-10">
+    <%= f.submit "公開", id: 'publishButton', name: 'published', class: 'btn btn-neutral mr-10' %>
+    <%= f.submit "非公開で保存", id: 'unpublishButton', name: 'unpublished', class: "btn btn-neutral mr-10" %>
+    <%= link_to "戻る", articles_path, data: { turbo_method: :get, turbo_confirm: "記事は保存されていませんが、よろしいでしょうか？" }, class: 'btn btn-neutral' %>
+  </div>
+
+<% end %>
