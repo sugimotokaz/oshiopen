@@ -6,6 +6,7 @@ import "trix"
 import "@rails/actiontext"
 
 import "./trix-editor-overrides"
+import "./character_counter"
 
 import Rails from '@rails/ujs';
 Rails.start();
