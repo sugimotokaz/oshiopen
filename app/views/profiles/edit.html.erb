@@ -27,7 +27,8 @@
 
         <div class="mb-8">
           <%= f.label :self_introduction, class: "block mb-1" %>
-          <%= f.text_area :self_introduction, class: "textarea textarea-bordered h-32 w-full" %>
+          <%= f.text_area :self_introduction, id: "inputTextSelfIntroduction", class: "textarea textarea-bordered h-32 w-full" %>
+          <p id="characterCountWrapSelfIntroduction" class="flex justify-end">残り<span id="characterCountSelfIntroduction">1000</span>文字</p>
         </div>
 
         <div class="mx-auto flex justify-center text-center mb-10">
