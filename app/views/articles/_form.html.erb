@@ -31,13 +31,19 @@
     <div class="flex items-center mb-1">
       <%= f.label :title, class: "block mr-1" %>
       <p class="text-red-500">(必須)</p>
+      <p class="ml-2">※最大50文字</p>
     </div>
-    <%= f.text_field :title, class: "input input-bordered w-full" %>
+    <%= f.text_field :title, id: "inputTextTitle", class: "input input-bordered w-full" %>
+    <p id="characterCountWrapTitle" class="flex justify-end mt-1">残り<span id="characterCountTitle">50</span>文字</p>
   </div>
 
   <div class="mb-4">
-    <%= f.label :notice, class: "block mb-1" %>
-    <%= f.text_area :notice, class: "textarea textarea-bordered h-24 w-full" %>
+    <div class="flex items-center mb-1">
+      <%= f.label :notice %>
+      <p class="ml-2">※最大100文字</p>
+    </div>
+    <%= f.text_area :notice, id: "inputTextNotice", class: "textarea textarea-bordered h-24 w-full" %>
+    <p id="characterCountWrapNotice" class="flex justify-end">残り<span id="characterCountNotice">100</span>文字</p>
   </div>
 
   <div class="mb-4">
