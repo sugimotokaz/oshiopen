@@ -16,25 +16,28 @@
 <div class="mb-4">
   <div class="flex items-center mb-1">  
     <%= f.label :reason_for_favorite %>
-    <p class="ml-2">※最大500文字</p>
+    <p class="ml-2">※最大100文字</p>
   </div>
-  <%= f.text_area :reason_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
+  <%= f.text_area :reason_for_favorite, id: "inputTextReasonFavorite", class: "textarea textarea-bordered h-32 w-full" %>
+  <p id="characterCountWrapReasonFavorite" class="flex justify-end mt-1">残り<span id="characterCountReasonFavorite">500</span>文字</p>
 </div>
 
 <div class="mb-4">
   <div class="flex items-center mb-1">
     <%= f.label :trigger_for_favorite %>
-    <p class="ml-2">※最大500文字</p>
+    <p class="ml-2">※最大100文字</p>
   </div>
-  <%= f.text_area :trigger_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
+  <%= f.text_area :trigger_for_favorite, id: "inputTextTriggerFavorite", class: "textarea textarea-bordered h-32 w-full" %>
+  <p id="characterCountWrapTriggerFavorite" class="flex justify-end mt-1">残り<span id="characterCountTriggerFavorite">500</span>文字</p>
 </div>
 
 <div class="mb-8">
   <div class="flex items-center mb-1">
     <%= f.label :activity_history %>
-    <p class="ml-2">※最大1000文字</p>
+    <p class="ml-2">※最大200文字</p>
   </div>
-  <%= f.text_area :activity_history, class: "textarea textarea-bordered h-32 w-full max-w-3xl" %>
+  <%= f.text_area :activity_history, id: "inputTextActivityHistory", class: "textarea textarea-bordered h-32 w-full max-w-3xl" %>
+  <p id="characterCountWrapActivityHistory" class="flex justify-end mt-1">残り<span id="characterCountActivityHistory">1000</span>文字</p>
 </div>
 
 <div class="mx-auto flex justify-center text-center mb-10">

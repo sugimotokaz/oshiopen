@@ -7,7 +7,7 @@
         <%= link_to "削除", oshi_detail_path(@oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline btn-accent' %>
       </div>
 
-      <%= form_with model: @oshi_detail do |f| %>
+      <%= form_with model: @oshi_detail, method: :patch do |f| %>
         <%= render 'form', oshi_detail: @oshi_detail, f: f %>
       <% end %>
     </div>
