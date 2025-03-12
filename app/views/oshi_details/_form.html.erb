@@ -14,17 +14,26 @@
 </div>
 
 <div class="mb-4">
-  <%= f.label :reason_for_favorite, class: "block mb-1" %>
+  <div class="flex items-center mb-1">  
+    <%= f.label :reason_for_favorite %>
+    <p class="ml-2">※最大500文字</p>
+  </div>
   <%= f.text_area :reason_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
 </div>
 
 <div class="mb-4">
-  <%= f.label :trigger_for_favorite, class: "block mb-1" %>
+  <div class="flex items-center mb-1">
+    <%= f.label :trigger_for_favorite %>
+    <p class="ml-2">※最大500文字</p>
+  </div>
   <%= f.text_area :trigger_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
 </div>
 
 <div class="mb-8">
-  <%= f.label :activity_history, class: "block mb-1" %>
+  <div class="flex items-center mb-1">
+    <%= f.label :activity_history %>
+    <p class="ml-2">※最大1000文字</p>
+  </div>
   <%= f.text_area :activity_history, class: "textarea textarea-bordered h-32 w-full max-w-3xl" %>
 </div>
 

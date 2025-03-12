@@ -6,5 +6,5 @@ class OshiDetail < ApplicationRecord
 
   validates :reason_for_favorite, length: { maximum: 500 }
   validates :trigger_for_favorite, length: { maximum: 500 }
-  validates :activity_history, length: { maximum: 10000 }
+  validates :activity_history, length: { maximum: 1000 }
 end
