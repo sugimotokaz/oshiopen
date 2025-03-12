@@ -1,0 +1,46 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="mb-4">
+  <div class="flex items-center mb-1">
+    <%= f.label :oshi_name_name, class: "block mr-1" %>
+    <p class="text-red-500">(必須)</p>
+  </div>
+  <%= f.text_field :oshi_name_name, class: "input input-bordered w-full" %>
+</div>
+
+<div class="mb-4">
+  <%= f.label :oshi_image, class: "block mb-1" %>
+  <%= f.file_field :oshi_image, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered form-control w-full', accept: 'image/*' %>
+</div>
+
+<div class="mb-4">
+  <div class="flex items-center mb-1">  
+    <%= f.label :reason_for_favorite %>
+    <p class="ml-2">※最大100文字</p>
+  </div>
+  <%= f.text_area :reason_for_favorite, id: "inputTextReasonFavorite", class: "textarea textarea-bordered h-32 w-full" %>
+  <p id="characterCountWrapReasonFavorite" class="flex justify-end mt-1">残り<span id="characterCountReasonFavorite">500</span>文字</p>
+</div>
+
+<div class="mb-4">
+  <div class="flex items-center mb-1">
+    <%= f.label :trigger_for_favorite %>
+    <p class="ml-2">※最大100文字</p>
+  </div>
+  <%= f.text_area :trigger_for_favorite, id: "inputTextTriggerFavorite", class: "textarea textarea-bordered h-32 w-full" %>
+  <p id="characterCountWrapTriggerFavorite" class="flex justify-end mt-1">残り<span id="characterCountTriggerFavorite">500</span>文字</p>
+</div>
+
+<div class="mb-8">
+  <div class="flex items-center mb-1">
+    <%= f.label :activity_history %>
+    <p class="ml-2">※最大200文字</p>
+  </div>
+  <%= f.text_area :activity_history, id: "inputTextActivityHistory", class: "textarea textarea-bordered h-32 w-full max-w-3xl" %>
+  <p id="characterCountWrapActivityHistory" class="flex justify-end mt-1">残り<span id="characterCountActivityHistory">1000</span>文字</p>
+</div>
+
+<div class="mx-auto flex justify-center text-center mb-10">
+  <%= f.submit "登録", class: 'btn btn-neutral mr-10' %>
+  <%= link_to "戻る", profile_path(current_user.profile), class: 'btn btn-neutral ml-5' %>
+</div>

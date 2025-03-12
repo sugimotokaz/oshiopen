@@ -7,43 +7,9 @@
         <%= link_to "削除", oshi_detail_path(@oshi_detail), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-outline btn-accent' %>
       </div>
 
-
-
-      <%= form_with model: @oshi_detail do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-
-        <div class="mb-4">
-          <div class="flex items-center mb-1">
-            <%= f.label :oshi_name_name, class: "block mb-1" %>
-            <p class="text-red-500">(必須)</p>
-          </div>
-          <%= f.text_field :oshi_name_name, value: @oshi_detail.oshi_name&.name, class: "input input-bordered w-full" %>
-        </div>
-
-        <div class="mb-4">
-          <%= f.label :oshi_image, class: "block mb-1" %>
-          <%= f.file_field :oshi_image, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered form-control w-full', accept: 'image/*' %>
-        </div>
-
-        <div class="mb-4">
-          <%= f.label :reason_for_favorite, class: "block mb-1" %>
-          <%= f.text_area :reason_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
-        </div>
-
-        <div class="mb-4">
-          <%= f.label :trigger_for_favorite, class: "block mb-1" %>
-          <%= f.text_area :trigger_for_favorite, class: "textarea textarea-bordered h-32 w-full" %>
-        </div>
-        <div class="mb-8">
-          <%= f.label :activity_history, class: "block mb-1" %>
-          <%= f.text_area :activity_history, class: "textarea textarea-bordered h-32 w-full" %>
-        </div>
-
-        <div class="mx-auto flex justify-center text-center mb-10">
-          <%= f.submit "変更", class: 'btn btn-neutral mr-10' %>
-          <%= link_to "戻る", profile_path(current_user.profile), class: 'btn btn-neutral ml-5' %>
-        </div>
-        <% end %>
+      <%= form_with model: @oshi_detail, method: :patch do |f| %>
+        <%= render 'form', oshi_detail: @oshi_detail, f: f %>
+      <% end %>
     </div>
   </div>
 </div>
