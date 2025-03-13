@@ -5,7 +5,7 @@
     <%= f.label :oshi_name_name, class: "block mr-1" %>
     <p class="text-red-500">(必須)</p>
   </div>
-  <%= f.text_field :oshi_name_name, class: "input input-bordered w-full" %>
+  <%= f.text_field :oshi_name_name, value: @oshi_detail.oshi_name&.name, class: "input input-bordered w-full" %>
 </div>
 
 <div class="mb-4">

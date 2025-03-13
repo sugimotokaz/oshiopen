@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function () {
+function setupCharacterCountArticle() {
   // タイトルの文字数カウント
   const inputTextTitle = document.getElementById('inputTextTitle');
   const characterCountTitle = document.getElementById('characterCountTitle');
@@ -48,4 +48,9 @@ document.addEventListener("turbo:load", function () {
     // **キー入力時にカウントを更新**
     inputTextNotice.addEventListener('keyup', keyUpNotice);
   }
-});
+};
+
+// **ページロード時・Turbo遷移後にセットアップ**
+document.addEventListener("turbo:load", setupCharacterCountArticle);
+document.addEventListener("turbo:frame-load", setupCharacterCountArticle);
+document.addEventListener("turbo:render", setupCharacterCountArticle);

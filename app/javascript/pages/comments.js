@@ -8,7 +8,7 @@ document.addEventListener("turbo:load", function () {
   if (inputTextComment) {
     function keyUpComment() {
       let str = inputTextComment.value.replace(/\r?\n/g, '');
-      let num = 1000 - str.length;
+      let num = 200 - str.length;
 
       characterCountComment.textContent = num;
       if(num >= 0) {
