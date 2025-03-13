@@ -9,6 +9,7 @@ import "./trix-editor-overrides"
 import "./pages/articles"
 import "./pages/profiles"
 import "./pages/oshi_details"
+import "./pages/comments"
 
 import Rails from '@rails/ujs';
 Rails.start();

@@ -1,9 +1,13 @@
 <div id="comment-form">
   <%= form_with model: comment, url: article_comments_path(article) do |f| %>
-    <%= f.label :body, "コメント", class: "block text-sm mb-1" %>
+    <div class="flex items-center mb-1">
+      <%= f.label :body, "コメント", class: "text-sm" %>
+      <p class="ml-2">※最大200文字</p>
+    </div>
     <div class="flex items-center space-x-4">
       <div class="flex-1">
-        <%= f.text_area :body, class: "textarea textarea-bordered w-full min-h-24" %>
+        <%= f.text_area :body, id: "inputTextComment", class: "textarea textarea-bordered w-full min-h-24" %>
+        <p id="characterCountWrapComment" class="flex justify-end">残り<span id="characterCountComment">200</span>文字</p>
       </div>
       <div class="flex-none">
         <%= f.submit "作成", class: 'btn btn-neutral lg:btn-md btn-sm' %>
