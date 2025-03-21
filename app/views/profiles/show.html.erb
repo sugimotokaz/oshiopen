@@ -2,7 +2,7 @@
   <div class="flex justify-center mt-8">
     <div class="w-full max-w-3xl">
 
-      <div class="bg-base-200 min-h-3.5 p-2">
+      <div class="bg-base-200 min-h-3.5 rounded-xl p-2">
         <div class="flex items-center my-1 mx-1">
           <div class="avatar mr-2">
             <div class="w-20 rounded-full">
@@ -33,7 +33,9 @@
           <div>
             <h1 class="text-base lg:text-lg">自己紹介</h1>
             <div class="bg-base-100 rounded-lg">
-              <h1 class="text-sm lg:text-base p-2"><%= simple_format(@profile.self_introduction) %></h1>
+              <% if @profile.self_introduction.present? %>
+                <h1 class="text-sm lg:text-base p-2"><%= simple_format(@profile.self_introduction) %></h1>
+              <% end %>
             </div>
           </div>
 
@@ -45,7 +47,7 @@
 
   <div class="flex justify-center mt-2">
     <div class="w-full max-w-3xl">
-      <div class="bg-base-200 min-h-3.5 p-2">
+      <div class="bg-base-200 min-h-3.5 rounded-xl p-2">
         <h1 class="text-lg lg:text-xl font-bold"><%= link_to "#{@profile.user.name}記事一覧", my_articles_profile_path(@profile), class: "text-blue-500 hover:underline" %></h1>
       </div>
     </div>
@@ -53,7 +55,7 @@
 
   <div class="flex justify-center mt-2">
     <div class="w-full max-w-3xl">
-      <div class="bg-base-200 min-h-3.5 p-2">
+      <div class="bg-base-200 min-h-3.5 rounded-xl p-2">
         <% if current_user == @profile.user %>
           <%= link_to new_profile_oshi_detail_path(@profile) do %>
             <i class="fa-solid fa-plus text-base lg:text-lg">推し追加</i>
@@ -61,7 +63,11 @@
         <% end %>
         <div>
           <!-- 推し一覧 -->
-          <%= render partial: 'oshi_detail', collection: @oshi_details %>
+          <% if @oshi_details.present? %>
+            <%= render partial: 'oshi_detail', collection: @oshi_details %>
+          <% else %>
+            <h1 class="text-center text-lg">推しは登録されていません</h1>
+          <% end %>
         </div>
       </div>
     </div>
