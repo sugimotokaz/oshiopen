@@ -1,6 +1,8 @@
 <div class="navbar bg-base-300 fixed top-0 flex justify-between">
   <div class="flex-1">
-    <%= link_to "推しOPEN", root_path, class: 'btn btn-ghost text-xl' %>
+    <%= link_to root_path do %>
+      <%= image_tag "oshiopen.png", class: 'h-10 ' %>
+    <% end %>
   </div>
 
   <!-- PC版に関する記述 -->
