@@ -1,6 +1,6 @@
-<div class="bg-base-200 min-h-3.5 py-1 px-2">
+<div class="min-h-3.5 py-1 px-2">
   <div id="profile-id-<%= follow_user.profile.id %>">
-    <div class="card bg-base-100 max-w-3xl min-h-20 shadow-xl">
+    <div class="card bg-base-200 max-w-3xl min-h-20 shadow-xl">
       <div class="py-3 px-2">
 
         <div class="flex items-center">
@@ -17,18 +17,20 @@
 
         <div class="mt-2 mx-2">
           <div class="flex">
-            <p class="text-base lg:text-lg">性別：</p>
-            <p class="text-base lg:text-lg"><%= follow_user.profile.gender_i18n %></p>
+            <h1 class="text-base lg:text-lg">性別：</h1>
+            <h1 class="text-base lg:text-lg"><%= follow_user.profile.gender_i18n %></h1>
           </div>
           <div class="flex">
-            <p class="text-base lg:text-lg">誕生年度：</p>
-            <p class="text-base lg:text-lg"><%= follow_user.profile.birth_year || '選択なし' %></p>
+            <h1 class="text-base lg:text-lg">誕生年度：</h1>
+            <h1 class="text-base lg:text-lg"><%= follow_user.profile.birth_year || '選択なし' %></h1>
           </div>
           <div>
-            <p class="text-base lg:text-lg">自己紹介：</p>
-            <% if follow_user.profile.self_introduction.present? %>
-              <p class="text-base lg:text-lg"><%= follow_user.profile.self_introduction.truncate(45, omission: '...') %></p>
-            <% end %>
+            <h1 class="text-base lg:text-lg">自己紹介</h1>
+            <div class="bg-base-100 rounded-lg">
+              <% if follow_user.profile.self_introduction.present? %>
+                <h1 class="text-base lg:text-lg p-2"><%= follow_user.profile.self_introduction.truncate(45, omission: '...') %></h1>
+              <% end %>
+            </div>
           </div>
           
         </div>

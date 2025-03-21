@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4">
   <div class="flex justify-center mt-10">
     <div class="w-full max-w-3xl">
-      <div class="bg-base-200 min-h-20 p-2 mb-8">
+      <div class="bg-base-200 min-h-20 rounded-full p-2 mb-8">
         <div class="text-sm lg:text-xl text-center my-2">
           <h1 class="text-2xl lg:text-3xl font-bold mb-2">推しOPEN</h1>
           <p class>推しについて発信したい！推し仲間を探したい！</br>
@@ -21,14 +21,14 @@
       <h2 class="text-center text-lg font-bold mb-2">まずは自分のプロフィールを公開しよう！</h2>
 
       <div class="text-center mb-14 lg:grid grid-cols-2 gap-2">
-        <div class="bg-base-200 min-h-24 mb-6 lg:mb-0">
+        <div class="bg-base-200 min-h-24 rounded-xl mb-6 lg:mb-0">
           <h1 class="font-bold text-lg pt-2 lg:pt-4">プロフィールの登録</h1>
           <div class="flex justify-center">
             <img src="https://i.gyazo.com/86594fa70797c2cdf9b4e77a80605a40.png" alt="Image from Gyazo" width="490" class="p-2"/>
           </div>
           <p class="py-2 lg:pt-6">性別や誕生年度、自己紹介を登録</p>
         </div>
-        <div class="bg-base-200 min-h-24">
+        <div class="bg-base-200 min-h-24 rounded-xl">
           <h1 class="font-bold text-lg pt-2 lg:pt-4">推しの登録</h1>
           <div class="flex justify-center">
             <img src="https://i.gyazo.com/c34e1b78914c03ed470e0f9bc75fa260.gif" alt="Image from Gyazo" width="490" class="p-2"/>
@@ -37,10 +37,10 @@
         </div>
       </div>
       <h2 class="text-center text-lg font-bold mb-2">記事を作成して推しについて発信しよう！</h2>
-      <div class="max-w-xl mx-auto text-center bg-base-200 min-h-20 mb-8">
+      <div class="max-w-xl mx-auto text-center bg-base-200 min-h-20 rounded-xl mb-8">
         <h1 class="font-bold text-lg pt-2">記事の作成</h1>
         <div class="flex justify-center">
-          <img src="https://i.gyazo.com/93bdb2a0dc2222ae0395c9737e8ef7b5.gif" alt="Image from Gyazo" width="490" class="p-2 max-w-[350px]"/>
+          <img src="https://i.gyazo.com/93bdb2a0dc2222ae0395c9737e8ef7b5.gif" alt="Image from Gyazo" width="490" class="p-3 max-w-[350px]"/>
         </div>
         <p class="py-2">同性や同じ推しを推しているユーザーだけに</br>
           公開することも可能！</p>
@@ -50,10 +50,7 @@
         <p class="text-lg mb-2">ログインしてプロフィール作成や記事を</br>
                             作成してみよう！</p>
         <%= link_to "ログイン", login_path, class: 'btn btn-neutral' %>
-        
-
       </div>
-      
       
     </div>
   </div>

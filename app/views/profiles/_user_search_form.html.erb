@@ -4,7 +4,7 @@
     <div class="mr-1">
       <%= f.label :profile_gender, "性別", class: "text-sm font-medium text-gray-700" %>
     </div>
-    <div class="mr-4">
+    <div class="mr-2 lg:mr-4">
       <%= f.select :profile_gender_eq, Profile.genders.keys.map.with_index { |k, i| [t("enums.profile.gender.#{k}"), i] }, { include_blank: 'すべて' }, class: "input input-bordered" %>
     </div>
     <div class="mr-1">
