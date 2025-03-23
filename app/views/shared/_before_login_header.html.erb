@@ -24,9 +24,24 @@
         <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- サイドバーの内容 -->
-          <li><%= link_to "記事一覧", articles_path %></li>
-          <li><%= link_to "ログイン", login_path %></li>
-          <li><%= link_to "新規作成", new_user_path %></li>
+          <li>
+            <%= link_to articles_path do %>
+              <i class="fa-solid fa-list"></i>
+              <span>記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to login_path do %>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <span>ログイン</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_path do %>
+              <i class="fa-solid fa-user-plus"></i>
+              <span>新規作成</span>
+            <% end %>
+          </li>
           <div class="divider divider-neutral"></div>
           <li><%= link_to "プライバシーリテラシー", policy_path %></li>
           <li><%= link_to "利用規約", term_path %></li>
