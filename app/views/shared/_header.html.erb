@@ -21,11 +21,58 @@
         <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- サイドバーの内容 -->
-          <li><%= link_to "マイページ", profile_path(current_user.profile) %></li>
-          <li><%= link_to "自分の記事一覧", my_articles_profile_path(current_user.profile) %></li>
-          <li><%= link_to "お気に入り記事一覧", favorite_articles_profile_path(current_user.profile) %></li>
-          <li><%= link_to "お気に入りユーザー一覧", follow_users_profile_path(current_user.profile) %></li>
-          <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
+          <li>
+            <%= link_to articles_path do %>
+              <i class="fa-solid fa-list"></i>
+              <span>記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_article_path do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>記事作成</span>
+            <% end %>
+          </li>
+          <div class="divider divider-neutral"></div>
+          <li>
+            <%= link_to profile_path(current_user.profile) do %>
+              <i class="fa-solid fa-address-card"></i>
+              <span>マイページ</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to my_articles_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-circle-user"></i>
+                <i class="fa-solid fa-list"></i>
+              </div>
+              <span>自分の記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to favorite_articles_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-list"></i>
+              </div>
+              <span>お気に入り記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to follow_users_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <span>お気に入りユーザー一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path, data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>ログアウト</span>
+            <% end %>
+          </li>
           <div class="divider divider-neutral"></div>
           <li><%= link_to "プライバシーリテラシー", policy_path %></li>
           <li><%= link_to "利用規約", term_path %></li>
@@ -51,14 +98,58 @@
         <label for="my-drawer-5" aria-label="close sidebar" class="drawer-overlay"></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           <!-- サイドバーの内容 -->
-          <li><%= link_to "記事一覧", articles_path %></li>
-          <li><%= link_to "記事作成", new_article_path %></li>
+          <li>
+            <%= link_to articles_path do %>
+              <i class="fa-solid fa-list"></i>
+              <span>記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_article_path do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>記事作成</span>
+            <% end %>
+          </li>
           <div class="divider divider-neutral"></div>
-          <li><%= link_to "マイページ", profile_path(current_user.profile) %></li>
-          <li><%= link_to "自分の記事一覧", my_articles_profile_path(current_user.profile) %></li>
-          <li><%= link_to "お気に入り記事一覧", favorite_articles_profile_path(current_user.profile) %></li>
-          <li><%= link_to "お気に入りユーザー一覧", follow_users_profile_path(current_user.profile) %></li>
-          <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete } %></li>
+          <li>
+            <%= link_to profile_path(current_user.profile) do %>
+              <i class="fa-solid fa-address-card"></i>
+              <span>マイページ</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to my_articles_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-circle-user"></i>
+                <i class="fa-solid fa-list"></i>
+              </div>
+              <span>自分の記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to favorite_articles_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-list"></i>
+              </div>
+              <span>お気に入り記事一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to follow_users_profile_path(current_user.profile) do %>
+              <div>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <span>お気に入りユーザー一覧</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path, data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>ログアウト</span>
+            <% end %>
+          </li>
           <div class="divider divider-neutral"></div>
           <li><%= link_to "プライバシーリテラシー", policy_path %></li>
           <li><%= link_to "利用規約", term_path %></li>
