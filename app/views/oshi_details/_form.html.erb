@@ -42,5 +42,5 @@
 
 <div class="mx-auto flex justify-center text-center mb-10">
   <%= f.submit "登録", class: 'btn btn-neutral mr-10' %>
-  <%= link_to "戻る", profile_path(current_user.profile), class: 'btn btn-neutral ml-5' %>
+  <%= link_to "戻る", profile_path(current_user.profile), data: { turbo_method: :get, turbo_confirm: "推し情報は保存されませんが、よろしいでしょうか？" }, class: 'btn btn-neutral ml-5' %>
 </div>
