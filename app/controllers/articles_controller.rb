@@ -183,16 +183,16 @@ class ArticlesController < ApplicationController
 
     if params[:unpublished].present?
       @article.status = :unpublished
-      success_message = "非公開にしました。"
+      info_message = "非公開にしました。"
       redirect_path = my_articles_profile_path(current_user.profile)
     else
       @article.status = :published
-      success_message = "投稿を更新しました。"
+      info_message = "投稿を更新しました。"
       redirect_path = articles_path
     end
 
     if @article.update(article_params)
-      redirect_to redirect_path, success: success_message
+      redirect_to redirect_path, info: info_message
     else
       flash.now[:danger] = "記事を更新できませんでした"
       render :edit, status: :unprocessable_entity
