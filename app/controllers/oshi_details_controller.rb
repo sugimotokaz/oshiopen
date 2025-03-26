@@ -19,10 +19,10 @@ class OshiDetailsController < ApplicationController
     @oshi_detail.oshi_name = oshi_name if oshi_name
   
     if @oshi_detail.save
-      flash[:success] = "推し情報を更新しました"
+      flash[:success] = "推し情報を作成しました"
       redirect_to profile_path(current_user.profile)
     else
-      flash.now[:danger] = "推し情報を更新できませんでした"
+      flash.now[:danger] = "推し作成できませんでした"
       render :new, status: :unprocessable_entity
     end
   end
@@ -43,7 +43,7 @@ class OshiDetailsController < ApplicationController
     
     # OshiDetail を更新
     if @oshi_detail.update(oshi_detail_params)
-      flash[:success] = "推し情報を更新しました"
+      flash[:info] = "推し情報を更新しました"
       redirect_to profile_path(current_user.profile)
     else
       flash.now[:danger] = "推し情報を更新できませんでした"

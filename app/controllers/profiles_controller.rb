@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       @profile.user.update(name: params[:profile][:name]) # nameカラムの更新
-      flash[:success] = "プロフィールを更新しました"
+      flash[:info] = "プロフィールを更新しました"
       redirect_to profile_path
     else
       flash.now[:danger] = "プロフィールを更新できませんでした"
