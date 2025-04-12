@@ -1,44 +1,34 @@
 <div id="comment-id-<%= comment.id %>">
-  <div class="min-h-3.5">
-    <div class="container mx-auto">
-      <div class="flex justify-center">
-        <div class="w-full max-w-3xl">
-          <div class="min-h-3.5">
-            <div class="m-1">
-              <div class="card bg-base-200 max-w-3xl shadow-xl">
-                <div class="py-3 px-2">
+  <div class="min-h-3.5 py-1">
+    <div class="card bg-base-200 max-w-3xl shadow-xl">
+      <div class="py-3 px-3">
 
-                  <div class="flex items-center mb-2">
-                    <div class="avatar mr-2">
-                      <div class="w-10 rounded-full">
-                        <%= image_tag comment.user.profile.profile_image.url %>
-                      </div>
-                    </div>
-                    <h1 class="text-sm lg:text-base"><%= comment.user.name %></h1>
-                    <div class="ms-auto">
-                      <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
-                    </div>
-                  </div>
-
-                  <h1 class="text-sm lg:text-base"><%= comment.body %></h1>
-                  <div class="flex justify-end">
-                    <% if current_user&.own1?(comment) %>
-                      <div class='text-lg lg:text-xl mr-4'>
-                        <%= link_to edit_comment_path(comment), data: { turbo_stream: true } do %>
-                          <i class="fa-solid fa-pen"></i>
-                        <% end %>
-                      </div>
-                      <div class='text-lg lg:text-xl'>
-                        <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
-                          <i class="fa-solid fa-trash"></i>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
+        <div class="flex items-center mb-2">
+          <div class="avatar mr-2">
+            <div class="w-10 rounded-full">
+              <%= image_tag comment.user.profile.profile_image.url %>
             </div>
           </div>
+          <h1 class="text-sm lg:text-base"><%= comment.user.name %></h1>
+          <div class="ms-auto">
+            <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
+          </div>
+        </div>
+
+        <h1 class="text-sm lg:text-base"><%= comment.body %></h1>
+        <div class="flex justify-end">
+          <% if current_user&.own1?(comment) %>
+            <div class='text-lg lg:text-xl mr-4'>
+              <%= link_to edit_comment_path(comment), data: { turbo_stream: true } do %>
+                <i class="fa-solid fa-pen"></i>
+              <% end %>
+            </div>
+            <div class='text-lg lg:text-xl'>
+              <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
