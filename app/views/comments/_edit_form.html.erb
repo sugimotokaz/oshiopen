@@ -1,40 +1,31 @@
 <div id="edit-form">
-  <div class="bg-base-200 min-h-3.5 p-1"> 
-    <div class="container mx-auto">
-      <div class="flex justify-center">
-        <div class="w-full max-w-3xl">
-          <div class="bg-base-200 min-h-3.5">
-            <div class="m-1">
-              <div class="card bg-base-100 max-w-3xl shadow-xl">
-                <div class="py-3 px-2">
+  <div class="min-h-3.5 py-1">
+    <div class="card bg-base-200 max-w-3xl shadow-xl">
+      <div class="py-3 px-3">
 
-                  <div class="flex items-center mb-1">
-                    <div class="avatar mr-2">
-                      <div class="w-10 rounded-full">
-                        <%= image_tag comment.user.profile.profile_image.url %>
-                      </div>
-                    </div>
-                    <h1 class="text-sm lg:text-base"><%= comment.user.name %></h1>
-                    <div class="ms-auto">
-                      <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
-                    </div>
-                  </div>
-
-                  <%= form_with model: comment, url: comment_path(comment), method: :patch do |f| %>
-                    <div class="flex items-center space-x-4">
-                      <div class="flex-1">
-                        <%= f.text_area :body, class: "textarea textarea-bordered w-full min-h-24" %>
-                      </div>
-                      <div class="flex-none">
-                        <%= f.submit "更新", class: 'btn btn-neutral lg:btn-md btn-sm' %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
+        <div class="flex items-center mb-2">
+          <div class="avatar mr-2">
+            <div class="w-10 rounded-full">
+              <%= image_tag comment.user.profile.profile_image.url %>
             </div>
           </div>
+          <h1 class="text-sm lg:text-base"><%= comment.user.name %></h1>
+          <div class="ms-auto">
+            <h1 class="text-sm lg:text-base"><%= l comment.created_at, format: :custom %></h1>
+          </div>
         </div>
+
+        <%= form_with model: comment, url: comment_path(comment), method: :patch do |f| %>
+          <div class="flex items-center space-x-4">
+            <div class="flex-1">
+              <%= f.text_area :body, class: "textarea textarea-bordered w-full min-h-24" %>
+            </div>
+            <div class="flex-none">
+              <%= f.submit "更新", class: 'btn btn-neutral lg:btn-md btn-sm' %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
