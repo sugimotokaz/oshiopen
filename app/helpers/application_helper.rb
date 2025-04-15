@@ -8,4 +8,9 @@ module ApplicationHelper
     else 'bg-gray-500 text-white p-4 rounded'
     end
   end
+
+  def page_title(title = '')
+    base_title = '推しOPEN'
+    title.present? ? "#{title} | #{base_title}" : base_title
+  end
 end
